@@ -1,8 +1,10 @@
 import numpy as np
-import pandas as pd 
+import pandas as pd
 
 import argparse
-
+import datetime
+import pickle
+import gc
 
 from keras.models import Model
 from keras.layers import Input, Dense, LSTM, Embedding, Dropout
@@ -15,18 +17,41 @@ from keras.utils import to_categorical
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--epochs", dest = "epochs", default= 20, type = int,
                  help="Indicate how many training epochs you want")
-argparser.add_argument("--lr", dest = "learning_rate", default= .01, type = float,
+argparser.add_argument("--lr", dest = "lr", default= .01, type = float,
                  help="Learning rate for training")
 argparser.add_argument("--datadir", dest = "datadir", type = str,
                  help = "Relative path where data binary files are stored ")
+argparser.add_argument("--embeddingdir", dest = "embeddingdir", type = str,
+                 help = "Relative path where the embedding matrix binary file is stored.")
 argparser.add_argument("--modeldir", dest = "modeldir", type = str,
                  help = "Relative path where pickled models should be saved.")
 argparser.add_argument("--historydir", dest = "historydir", type = str,
                  help = "Relative path where training hitory should be saved.")
 argparser.add_argument("--patience", dest = "patience", type = int, default = 2,
                  help = "Early stopping patience.")
+# argparser.add_argument("--batch", dest = "batch", type = int, default = 128,
+#                  help = "Batch size.")
+
+args = argparser.parse_args()
+# store how many training epochs
+epochs = args.epochs
+# store learning rate
+lr = args.lr
+# store the data directory
+datadir = args.datadir
+# store the embedding matrix location
+embeddingdir = args.embeddingdir
+# store the model directory
+modeldir = args.modeldir
+# store the history directory
+historydir = args.historydir
+# store the training patience
+patience = args.patience
+# store the batch size
+# batch = args.batch
 
 VOCAB_SIZE = 30212
+
 
 def get_model(embedding_matrix):
         # input 1: photo features
@@ -42,8 +67,7 @@ def get_model(embedding_matrix):
                     weights=[embedding_matrix])(inputs_caption)
     drop2 = Dropout(0.5)(embedding)
     lstm1 = LSTM(256)(drop2)
-
-    #decoder model
+    #merge the LSTM and CNN outputs, and slap a few dense layers on top. 
     merged = add([dense1, lstm1])
     dense2 = Dense(256, activation='relu')(merged)
     outputs = Dense(VOCAB_SIZE, activation='softmax')(dense2)
@@ -52,6 +76,25 @@ def get_model(embedding_matrix):
     sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
     model.compile(loss='categorical_crossentropy', optimizer=sgd)
     return(model)
+
+# def batch_generator(X_photo, X_caption, y, batch_size):
+#     number_of_batches = X_photo.shape[0] // batch_size
+#     counter=0
+#     shuffle_index = np.arange(X_photo.shape[0])
+#     np.random.shuffle(shuffle_index)
+#     X_photo = X_photo[shuffle_index, :]
+#     X_caption =  X_caption[shuffle_index, :]
+#     y =  y[shuffle_index]
+#     while 1:
+#         index_batch = shuffle_index[batch_size*counter:batch_size*(counter+1)]
+#         X_photo_batch = X_photo[index_batch,:]
+#         X_caption_batch = X_caption[index_batch,:]
+#         y_batch = to_categorical(y[index_batch], VOCAB_SIZE)
+#         counter += 1
+#         yield([np.array(X_photo_batch), np.array(X_caption_batch)],y_batch)
+#         if (counter >= number_of_batches):
+#             np.random.shuffle(shuffle_index)
+#             counter=0
 
 """
 Load the training and validation data
@@ -63,37 +106,53 @@ def load_npy(path):
     return(arr)
 
 
+"""
+Define checkpoints for model checkpoints, as well as early stopping
+"""
+today = datetime.datetime.now()
+model_path = modeldir + 'model-date_%d-%d-%d-%d-ep{epoch:03d}-loss{loss:.3f}_lr-%f_patience-%d.h5' % (
+    today.month, today.day, today.hour, today.minute, lr, patience)
+# model checkpoint
+checkpoint = ModelCheckpoint(model_path, monitor='loss', verbose=1, save_best_only=False)
+# early stopping
+early_stopping = EarlyStopping(patience=patience)
+"""
+fit the model. keep track of the training history.
+"""
+print("Loading model and embedding matrix...")
+embedding_matrix = load_npy(embeddingdir + "embedding_matrix.npy")
+# initialize a model
+model = get_model(embedding_matrix)
+del embedding_matrix
+gc.collect()
+print("done.")
+print()
+print("Loading training data...")
+# training data/labels
+y_train = load_npy(datadir + "y_train.npy")
+X_train_photos = load_npy(datadir + "X_train_photos.npy")
+X_train_captions = load_npy(datadir + "X_train_captions.npy")
+print("done.")
+print()
+print("Loading validation data...")
+y_valid = load_npy(datadir + "y_valid.npy")
+X_valid_photos = load_npy(datadir + "X_valid_photos.npy")
+X_valid_captions = load_npy(datadir + "X_valid_captions.npy")
+# save the number of examples for later
+NUM_EXAMPLES = X_train_photos.shape[0]
 
+history = model.fit([X_train_photos, X_train_captions], to_categorical(y_train,VOCAB_SIZE), epochs=epochs, verbose=1, 
+    callbacks=[checkpoint,early_stopping], 
+    validation_data=([X_valid_photos, X_valid_captions], to_categorical(y_valid,VOCAB_SIZE)))
 
+# history = model.fit_generator(generator = batch_generator(X_train_photos, X_train_captions, y_train, batch_size = batch),
+#                     steps_per_epoch=NUM_EXAMPLES//batch, 
+#                     epochs=epochs, verbose=1, callbacks=[checkpoint])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+"""
+Save the training history
+"""
+history_path = historydir + "history-date_%d-%d-%d-%d.pkl" % (today.month, today.day, today.hour, today.minute)
+with open(history_path, "wb") as handle:
+    pickle.dump(history.history, handle)
+handle.close()
