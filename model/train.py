@@ -56,14 +56,16 @@ VOCAB_SIZE = 30212
 def get_model(embedding_matrix):
         # input 1: photo features
     inputs_photo = Input(shape = (4096,), name="Inputs-photo")
+    # A first dense layer
+    dense = Dense(4096, activation = 'relu')(inputs_photo)
     # add a dense layer on top of that, with ReLU activation and random dropout
-    drop1 = Dropout(0.5)(inputs_photo)
+    drop1 = Dropout(0.5)(dense)
     dense1 = Dense(256, activation='relu')(drop1)
 
     #input 2: caption sequence
     inputs_caption = Input(shape=(15,), name = "Inputs-caption")
     embedding = Embedding(VOCAB_SIZE, 300,
-                    mask_zero = True, trainable = False,
+                    mask_zero = True, trainable = True,
                     weights=[embedding_matrix])(inputs_caption)
     drop2 = Dropout(0.5)(embedding)
     lstm1 = LSTM(256)(drop2)
@@ -73,28 +75,9 @@ def get_model(embedding_matrix):
     outputs = Dense(VOCAB_SIZE, activation='softmax')(dense2)
     # tie it together [image, seq] [word]
     model = Model(inputs=[inputs_photo, inputs_caption], outputs=outputs)
-    sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-    model.compile(loss='categorical_crossentropy', optimizer=sgd)
+    sgd = SGD(lr=0.008, decay=1e-6, momentum=0.9, nesterov=True)
+    model.compile(loss='sparse_categorical_crossentropy', optimizer=sgd)
     return(model)
-
-# def batch_generator(X_photo, X_caption, y, batch_size):
-#     number_of_batches = X_photo.shape[0] // batch_size
-#     counter=0
-#     shuffle_index = np.arange(X_photo.shape[0])
-#     np.random.shuffle(shuffle_index)
-#     X_photo = X_photo[shuffle_index, :]
-#     X_caption =  X_caption[shuffle_index, :]
-#     y =  y[shuffle_index]
-#     while 1:
-#         index_batch = shuffle_index[batch_size*counter:batch_size*(counter+1)]
-#         X_photo_batch = X_photo[index_batch,:]
-#         X_caption_batch = X_caption[index_batch,:]
-#         y_batch = to_categorical(y[index_batch], VOCAB_SIZE)
-#         counter += 1
-#         yield([np.array(X_photo_batch), np.array(X_caption_batch)],y_batch)
-#         if (counter >= number_of_batches):
-#             np.random.shuffle(shuffle_index)
-#             counter=0
 
 """
 Load the training and validation data
@@ -113,7 +96,7 @@ today = datetime.datetime.now()
 model_path = modeldir + 'model-date_%d-%d-%d-%d-ep{epoch:03d}-loss{loss:.3f}_lr-%f_patience-%d.h5' % (
     today.month, today.day, today.hour, today.minute, lr, patience)
 # model checkpoint
-checkpoint = ModelCheckpoint(model_path, monitor='loss', verbose=1, save_best_only=False)
+checkpoint = ModelCheckpoint(model_path, monitor='val_loss', verbose=1, save_best_only=False)
 # early stopping
 early_stopping = EarlyStopping(patience=patience)
 """
@@ -130,24 +113,22 @@ print()
 print("Loading training data...")
 # training data/labels
 y_train = load_npy(datadir + "y_train.npy")
+y_train = y_train.reshape((-1,))
 X_train_photos = load_npy(datadir + "X_train_photos.npy")
 X_train_captions = load_npy(datadir + "X_train_captions.npy")
 print("done.")
 print()
 print("Loading validation data...")
 y_valid = load_npy(datadir + "y_valid.npy")
+y_valid = y_valid.reshape((-1,))
 X_valid_photos = load_npy(datadir + "X_valid_photos.npy")
 X_valid_captions = load_npy(datadir + "X_valid_captions.npy")
 # save the number of examples for later
 NUM_EXAMPLES = X_train_photos.shape[0]
 
-history = model.fit([X_train_photos, X_train_captions], to_categorical(y_train,VOCAB_SIZE), epochs=epochs, verbose=1, 
+history = model.fit([X_train_photos, X_train_captions], y_train, epochs=epochs, verbose=1,
     callbacks=[checkpoint,early_stopping], 
-    validation_data=([X_valid_photos, X_valid_captions], to_categorical(y_valid,VOCAB_SIZE)))
-
-# history = model.fit_generator(generator = batch_generator(X_train_photos, X_train_captions, y_train, batch_size = batch),
-#                     steps_per_epoch=NUM_EXAMPLES//batch, 
-#                     epochs=epochs, verbose=1, callbacks=[checkpoint])
+    validation_data=([X_valid_photos, X_valid_captions], y_valid))
 
 """
 Save the training history
