@@ -1,0 +1,194 @@
+---
+title: "Chicken and Waffles :D"
+output: pdf_document
+---
+
+In this notebook I'll try and be more clear about what I was explaining earlier about what I think is causing the "chicken and waffles" phenomenon. 
+
+In short - my argument was that these three words are common in the training data, and so if my model cannot derive any information from an input image (image is too confusing, different from training data, etc), it will resort to the training captions and naively pick a sequence that is common there. Here I'll try and back that argument up.
+
+\newpage
+
+```{R,include = FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidytext)
+library(jsonlite)
+library(stringr)
+library(grid)
+library(tidyr)
+```
+```{R,include = FALSE}
+# Define multiple plot function
+#
+# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
+# - cols:   Number of columns in layout
+# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
+#
+# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
+# then plot 1 will go in the upper left, 2 will go in the upper right, and
+# 3 will go all the way across the bottom.
+#
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+```
+```{R,echo=FALSE, }
+json_file <- stream_in(file("../data/yelp_photos/photos.json","r"))
+```
+
+
+
+```{R,include = FALSE,cache = TRUE}
+df <- json_file %>%
+      filter(caption != "") %>%
+      mutate(caption = tolower(caption))
+```
+
+
+```{R,include = FALSE}
+unigrams = df %>%
+      unnest_tokens(word, caption)
+```
+
+```{R,include = FALSE}
+freq = unigrams %>%
+      count(word) %>%
+      top_n(50, n) %>%
+      ggplot(aes(x = reorder(word,n, FUN = min), y = n, fill = word)) + 
+      geom_col(show.legend = FALSE) + 
+      coord_flip() + 
+      ylab("Word frequency") + xlab("Word") + ggtitle("Raw word frequency")
+```
+
+
+```{R,include = FALSE}
+freq_nostops = unigrams %>% 
+      anti_join(stop_words) %>%
+      count(word) %>%
+      top_n(50, n) %>%
+      ggplot(aes(x = reorder(word,n, FUN = min), y = n, fill = word)) + 
+      geom_col(show.legend = FALSE) + 
+      coord_flip() + 
+      ylab("Word frequency") +xlab("Word") + ggtitle("Word frequency - no stopwords")
+```
+
+
+
+
+\newpage
+
+
+##### Word Frequency
+
+First what words are common in the dataset? 
+
+```{R,echo=FALSE}
+multiplot(freq,freq_nostops, cols = 2)
+```
+
+The top couple of words are stopwords. If I remove stopwords,  chicken is the most frequent word in the captions.
+
+As in the global frequency, the two most commonly occuring words to appear **first** in a caption are _the_ and _chicken_:
+
+##### Beginning word frequency
+
+But, this model learned to add the first to a predicted sequence by looking at the first word of the training captions. So more interesting than the global word frequency is the frequency of words that start the training captions. 
+
+```{R,echo=FALSE}
+df %>%
+      mutate(first_word = str_extract(caption, "\\w+")) %>%
+      count(first_word) %>%
+      top_n(50, n) %>%
+      ggplot(aes(x = reorder(first_word,n, FUN = min), y = n, fill = first_word)) + 
+      geom_col(show.legend = FALSE) + 
+      coord_flip() + 
+      ylab("Word frequency") + xlab("Word") + ggtitle("First word in caption frequency")
+```
+
+Again the most common words are _the_ and _chicken_.
+
+A completely uninformed agent would predict that the first word of every sequence is _the_ - i.e completely ignore the image information and go off of the training corpus word frequency. 
+
+BUT, assume that my model sees something in the input photo that makes it believe that the first word should be _chicken_ instead of _the_. It does so, and so the running sequence is `[chicken]`, which is fed back to the model to predict the next word. 
+
+In the training corpus, what words commonly come after _chicken_?
+
+```{R,include = FALSE}
+bigrams = df %>%
+      unnest_tokens(word, caption, token= "ngrams", n = 2)
+```
+```{R,echo=FALSE}
+bigrams %>%
+      separate(word, into = c("token1", "token2")) %>%
+      filter(token1 == "chicken") %>%
+      unite("bigram", c("token1", "token2"), sep = " " ) %>%
+      count(bigram) %>%
+      top_n(50, n) %>%
+      ggplot(aes(reorder(bigram, n, FUN = min), y = n, fill = bigram)) + 
+      geom_col(show.legend = FALSE) + 
+      coord_flip() + 
+      ylab("Word frequency") + xlab("Word") + ggtitle("Bigram frequency - first word = 'chicken'")
+```
+
+Ok, so by far the most frequent word to come after "chicken" is "and" in the training set.
+
+So lets assume our model has no idea what a picture looks like, but it doesn't feel like putting _the_ at the beginning of the sentence, so it puts _chicken_. After it has chicken it naively picks the most frequently occuring word after chicken in the training set - _and_.
+
+So our running sequence is `[chicken, and]`, which is fed back into the model to predict he next word.
+
+...What word commonly comes after "chicken and..."? 
+
+```{R,echo=FALSE}
+df %>%
+      filter(str_detect(caption, "chicken and")) %>%
+      unnest_tokens(word,caption, token = "ngrams", n = 3) %>%
+      separate(word, into = c("token1", "token2", "token3")) %>%
+      filter(token1 == "chicken" & token2 == "and") %>%
+      unite("trigram", c("token1", "token2", "token3"), sep = " " ) %>%
+      count(trigram) %>%
+      top_n(30, n) %>%
+      ggplot(aes(reorder(trigram, n, FUN = min), y = n, fill = trigram)) + 
+      geom_col(show.legend = FALSE) + 
+      coord_flip() + 
+      ylab("Word frequency") + xlab("Word") + ggtitle("trigram frequency - first words = 'chicken and'")
+```
+
+The second most common word to come after "chiken and" is "waffles".
+
+This high Frequency of captions that start with "chicken", and then the high frequency of the word "and" after "chicken", and high frequency of "waffles" after "chicken and" is what I suspect is fooling my model into the "chicken and waffles" phenomenon.
+
+You might say: "hey - the trigram _chicken and grilled_ is more frequent than _chicken and waffles_ - why would it predict the latter?" 
+
+The reason (I suspect) is that this process of predicting, appending and feeding back into the model doesn't stop until a special token `<endseq>` is predicted - which marks the end of a caption. Thus, the model may have learned that it is less likely for a sentence to end after _"chicken and grilled"_ than _"chicken and waffles"_, as the former is ungrammatical. 
