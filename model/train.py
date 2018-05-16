@@ -13,6 +13,10 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.optimizers import SGD
 from keras.utils import to_categorical
 
+from architectures import get_inject_model, get_merge_model
+model_factories = {"inject":get_inject_model,
+                            "merge":get_merge_model}
+
 # read command-line args, to see if the user wants to just run a sample
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--epochs", dest = "epochs", default= 20, type = int,
@@ -29,8 +33,10 @@ argparser.add_argument("--historydir", dest = "historydir", type = str,
                  help = "Relative path where training hitory should be saved.")
 argparser.add_argument("--patience", dest = "patience", type = int, default = 2,
                  help = "Early stopping patience.")
-# argparser.add_argument("--batch", dest = "batch", type = int, default = 128,
-#                  help = "Batch size.")
+argparser.add_argument("--arch", dest = "arch", type = str, default = "inject",
+                 help = "Batch size.")
+argparser.add_argument("--trainable", dest = "trainable", type =int, default = 1,
+                 help = "Whether to train word embeddings. `0` for false, `1` for true.")
 
 args = argparser.parse_args()
 # store how many training epochs
@@ -47,37 +53,18 @@ modeldir = args.modeldir
 historydir = args.historydir
 # store the training patience
 patience = args.patience
-# store the batch size
-# batch = args.batch
+# store the user's architecture choice
+architecture = args.arch
+# get a model factory
+model_factory = model_factories[architecture]
+# should we train the word embeddings? 
+trainable = args.trainable
 
+# global variables
 VOCAB_SIZE = 30212
+EMBED_SIZE = 300
 
 
-def get_model(embedding_matrix):
-        # input 1: photo features
-    inputs_photo = Input(shape = (4096,), name="Inputs-photo")
-    # A first dense layer
-    dense = Dense(4096, activation = 'relu')(inputs_photo)
-    # add a dense layer on top of that, with ReLU activation and random dropout
-    drop1 = Dropout(0.5)(dense)
-    dense1 = Dense(256, activation='relu')(drop1)
-
-    #input 2: caption sequence
-    inputs_caption = Input(shape=(15,), name = "Inputs-caption")
-    embedding = Embedding(VOCAB_SIZE, 300,
-                    mask_zero = True, trainable = True,
-                    weights=[embedding_matrix])(inputs_caption)
-    drop2 = Dropout(0.5)(embedding)
-    lstm1 = LSTM(256)(drop2)
-    #merge the LSTM and CNN outputs, and slap a few dense layers on top. 
-    merged = add([dense1, lstm1])
-    dense2 = Dense(256, activation='relu')(merged)
-    outputs = Dense(VOCAB_SIZE, activation='softmax')(dense2)
-    # tie it together [image, seq] [word]
-    model = Model(inputs=[inputs_photo, inputs_caption], outputs=outputs)
-    sgd = SGD(lr=0.008, decay=1e-6, momentum=0.9, nesterov=True)
-    model.compile(loss='sparse_categorical_crossentropy', optimizer=sgd)
-    return(model)
 
 """
 Load the training and validation data
@@ -93,8 +80,8 @@ def load_npy(path):
 Define checkpoints for model checkpoints, as well as early stopping
 """
 today = datetime.datetime.now()
-model_path = modeldir + 'model-date_%d-%d-%d-%d-ep{epoch:03d}-loss{loss:.3f}_lr-%f_patience-%d.h5' % (
-    today.month, today.day, today.hour, today.minute, lr, patience)
+model_path = modeldir + 'model_%s-date_%d-%d-%d-%d-ep{epoch:03d}-loss{loss:.3f}_lr-%f_patience-%d.h5' % (
+    architecture,today.month, today.day, today.hour, today.minute, lr, patience)
 # model checkpoint
 checkpoint = ModelCheckpoint(model_path, monitor='val_loss', verbose=1, save_best_only=False)
 # early stopping
@@ -105,7 +92,7 @@ fit the model. keep track of the training history.
 print("Loading model and embedding matrix...")
 embedding_matrix = load_npy(embeddingdir + "embedding_matrix.npy")
 # initialize a model
-model = get_model(embedding_matrix)
+model = model_factory(embedding_matrix, trainable = trainable)
 del embedding_matrix
 gc.collect()
 print("done.")
@@ -133,7 +120,7 @@ history = model.fit([X_train_photos, X_train_captions], y_train, epochs=epochs, 
 """
 Save the training history
 """
-history_path = historydir + "history-date_%d-%d-%d-%d.pkl" % (today.month, today.day, today.hour, today.minute)
+history_path = historydir + "history-%s-date_%d-%d-%d-%d.pkl" % (architecture, today.month, today.day, today.hour, today.minute)
 with open(history_path, "wb") as handle:
     pickle.dump(history.history, handle)
 handle.close()
