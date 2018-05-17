@@ -1,1 +1,9 @@
 data/*
+*.h5
+*.pkl
+*.RData
+*.rdb
+*.rdx
+*.pyc
+server/imagecaption/*
+*latex/*
