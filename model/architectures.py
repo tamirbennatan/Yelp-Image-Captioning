@@ -60,11 +60,11 @@ def get_inject_model(embedding_matrix, trainable = True):
     # now feed the concatenation into a LSTM layer (many-to-many)
     lstm_layer = LSTM(units=EMBED_SIZE,
                       input_shape=(15 + 1, EMBED_SIZE),   # one additional time step for the image features
-                      return_sequences=False,
-                      dropout=.5)(merged)
+                      return_sequences=False)(merged)
+    drop3 = Dropout(0.5)(lstm_layer)
 
         # create a fully connected layer to make the predictions
-    outputs = Dense(units=VOCAB_SIZE,activation='softmax')(lstm_layer)
+    outputs = Dense(units=VOCAB_SIZE,activation='softmax')(drop3)
 
     model = Model(inputs=[inputs_photo, inputs_caption], outputs=outputs)
     sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
