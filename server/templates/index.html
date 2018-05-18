@@ -5,24 +5,24 @@
 <div>
     <form id="upload-file" method="post" enctype="multipart/form-data">
         <label for="imageUpload" class="upload-label">
-            Choose...
+            Upload image...
         </label>
         <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
     </form>
-
-    <div class="image-section" style="display:none;">
-        <div class="img-preview">
-            <div id="imagePreview">
-            </div>
-        </div>
+    <div class="row">
         <div>
-            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+            <div class="image-section" style="display:none;width:40%">
+                <div class="img-preview">
+                    <div id="imagePreview">
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+                </div>
+            </div>
+            <div class="loader" style="display:none;"></div>
         </div>
-    </div>
-
-    <div class="loader" style="display:none;"></div>
-
-    <div id="myDiv">
+        <div id="myDiv"> </div>
     </div>
 
 </div>

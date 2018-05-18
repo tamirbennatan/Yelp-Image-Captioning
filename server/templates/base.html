@@ -97,14 +97,16 @@
                 var plotData = JSON.parse(JSON.stringify(data));
                 // set up axes and ticks
                 var layout = {
+                title: 'Top Caption Predictions for Image',
                   yaxis: {
+                    title: "Caption",
                     autorange: true,
-                    // showgrid: false,
-                    // zeroline: false,
-                    // showline: false,
                     autotick: true,
                     ticks: '',
                     showticklabels: false
+                  },
+                  xaxis: {
+                    title:"Caption Score"
                   }
                 }
 

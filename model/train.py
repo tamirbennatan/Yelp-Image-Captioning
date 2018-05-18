@@ -35,8 +35,8 @@ argparser.add_argument("--patience", dest = "patience", type = int, default = 2,
                  help = "Early stopping patience.")
 argparser.add_argument("--arch", dest = "arch", type = str, default = "inject",
                  help = "Batch size.")
-argparser.add_argument("--trainable", dest = "trainable", type =int, default = 1,
-                 help = "Whether to train word embeddings. `0` for false, `1` for true.")
+argparser.add_argument("--trainable", dest = "trainable", type =str, default = "False",
+                 help = "Whether to train word embeddings. First letter capitalized (python boolean)")
 
 args = argparser.parse_args()
 # store how many training epochs
@@ -58,7 +58,7 @@ architecture = args.arch
 # get a model factory
 model_factory = model_factories[architecture]
 # should we train the word embeddings? 
-trainable = args.trainable
+trainable = args.trainable == "True"
 
 # global variables
 VOCAB_SIZE = 30212

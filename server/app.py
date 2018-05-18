@@ -188,7 +188,8 @@ if __name__ == "__main__":
     load_image_processor()
     load_caption_model()
     load_tokenizer()
-    app.run()
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
 
 
 
