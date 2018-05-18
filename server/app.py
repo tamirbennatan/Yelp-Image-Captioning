@@ -7,6 +7,8 @@ import re
 import numpy as np
 import pickle
 import pdb
+import io
+import base64
 
 import tensorflow as tf
 
@@ -14,8 +16,6 @@ from keras.models import load_model
 from keras.preprocessing import image
 from keras.applications.vgg16 import preprocess_input
 from keras.preprocessing.image import load_img, img_to_array
-
-from bokeh.plotting import figure, show, output_file
 
 
 # Flask utils
@@ -133,10 +133,27 @@ def generate_predictions_beam(image_path, width, num_neighbors,
                                 key = lambda x: x._probsum/x._num_elem**alpha)[-top_n:]
     # build output JSON data 
     values = []
+    x = []
+    y = []
     for acc_seq in accepted_sequences[-1*(max(width, len(accepted_sequences))):]:
-        values.append({"label" : acc_seq.to_words(reverse_tokenizer,end_idx), 
-                        "value" : round(acc_seq._probsum/acc_seq._num_elem**alpha,3)})
-    output = [{"values":values}]
+        y.append(acc_seq.to_words(reverse_tokenizer,end_idx))
+        x.append(round(acc_seq._probsum/acc_seq._num_elem**alpha,3))
+
+    output = [{"x":x, 
+                "y":"", 
+                "type":'bar', 
+                'orientation':'h', 
+                'text': y, 
+                'textposition': 'auto',
+                'marker': {
+                    'color': 'rgb(158,202,225)',
+                    'opacity': 0.6,
+                    'line': {
+                      'color': 'rbg(8,48,107)',
+                      'width': 1.5
+                    }
+                }
+            }]
     return output
 
 
@@ -156,15 +173,14 @@ def predict():
         # Save the file to ./uploads
         basepath = os.path.dirname(__file__)
         file_path = os.path.join(
-            basepath, 'uploads', secure_filename(f.filename))
+            basepath, 'uploads', secure_filename('pic.' + f.filename.rsplit('.', 1)[1].lower()))
         f.save(file_path)
 
         # Make prediction
         preds = generate_predictions_beam(file_path, width = 5, num_neighbors = 3)
 
-        # return as a JSON response
         return jsonify(preds)
-        # return str(preds)
+
     return None
 
 if __name__ == "__main__":
