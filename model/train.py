@@ -13,9 +13,10 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.optimizers import SGD
 from keras.utils import to_categorical
 
-from architectures import get_inject_model, get_merge_model
+from architectures import get_inject_model, get_merge_model, get_merge_add_model
 model_factories = {"inject":get_inject_model,
-                            "merge":get_merge_model}
+                            "merge":get_merge_model,
+                            "merge_add":get_merge_add_model}
 
 # read command-line args, to see if the user wants to just run a sample
 argparser = argparse.ArgumentParser()
@@ -63,7 +64,6 @@ trainable = args.trainable == "True"
 # global variables
 VOCAB_SIZE = 30212
 EMBED_SIZE = 300
-
 
 
 """
