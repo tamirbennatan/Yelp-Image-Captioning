@@ -7,3 +7,5 @@ data/*
 *.pyc
 server/imagecaption/*
 *latex/*
+*alpha.vs./*.jpg
+

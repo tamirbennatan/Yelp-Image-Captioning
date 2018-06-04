@@ -9,8 +9,8 @@
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">   
-    <link href="{{ url_for('static', filename='css/bootstrap-social.css') }}" rel="stylesheet"> 
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> 
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <script src="{{ url_for('static', filename='js/plotly-latest.min.js') }}"></script>   
 </head>
@@ -20,7 +20,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">Yelp Dataset Challenge: Image Captioning System</a>
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-description-modal-lg">
                 How does this work?
             </button>
             <a class="btn btn-primary" href ="https://github.com/tamirbennatan/Yelp-Image-Captioning", target="_blank">
@@ -35,7 +35,7 @@
 </body>
 
 <!-- Modal content -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-description-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       WHEEEES
@@ -68,8 +68,6 @@
     $("#imageUpload").change(function () {
         $('.image-section').show();
         $('#btn-predict').show();
-        $('#result').text('');
-        $('#result').hide();
         readURL(this);
     });
 
@@ -113,6 +111,50 @@
                 Plotly.newPlot('myDiv', plotData, layout);
             },
         });
+    });
+
+    $(".sample_img").click(function(){
+
+        // Hide all modals
+        $(".modal").modal('hide');
+        $('.loader').show();
+
+        // store the source of the image to show
+        var src = $(this).attr('src');
+
+        // Make prediction by calling api /sample_predict
+        $.ajax({
+            type: 'POST',
+            url: '/sample_image',
+            data: src,
+            contentType: false,
+            cache: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                // Get and display the result
+                $('.loader').hide();
+                // Make a plot
+                var plotData = JSON.parse(JSON.stringify(data));
+                // set up axes and ticks
+                var layout = {
+                title: 'Top Caption Predictions for Image',
+                  yaxis: {
+                    title: "Caption",
+                    autorange: true,
+                    autotick: true,
+                    ticks: '',
+                    showticklabels: false
+                  },
+                  xaxis: {
+                    title:"Caption Score"
+                  }
+                }
+
+                Plotly.newPlot('myDiv', plotData, layout);
+            },
+        });
+
     });
 
 

@@ -5,6 +5,7 @@ import os
 import glob
 import re
 import numpy as np
+import pandas as pd
 import pickle
 import pdb
 import io
@@ -63,6 +64,10 @@ def load_tokenizer():
     global reverse_tokenizer
     reverse_tokenizer = {index: word for word,index in tokenizer.word_index.items()}
 
+def load_validation():
+    global valid_set
+    valid_set = pd.read_csv("static/valid_set/valid_ids.csv")
+
 
 """
 Prepare an image to be processed by VGG16
@@ -91,7 +96,7 @@ def extract_photo_features(image_path):
         return(features)
 
 def generate_predictions_beam(image_path, width, num_neighbors,
-                                 top_n = 3, end_idx = 2, max_length = 15, alpha = 1.5):
+                                 top_n = 3, end_idx = 2, max_length = 15, ignore_idx = [4,61,345], alpha = .6):
     global graph2
     # isolate the photo features
     photo_features = extract_photo_features(image_path)
@@ -100,7 +105,7 @@ def generate_predictions_beam(image_path, width, num_neighbors,
     # keep track of the current population
     population = []
     # add a start sequence to the population
-    start_sequence = SequenceCandidate.template_seq()
+    start_sequence = SequenceCandidate.template_seq(ignore_idx = ignore_idx, alpha = alpha)
     population.append(start_sequence)
     for i in range(max_length - 1):
         tmp = []
@@ -113,6 +118,10 @@ def generate_predictions_beam(image_path, width, num_neighbors,
             pred_argsort = pred.argsort()
             # add candidates for each of the <num_neighbors> neighbors
             for next_idx in pred_argsort[-num_neighbors:]:
+                # if we're starting to repeat bigrams, accept the current candidate
+                if (cand_seq.final_token(), next_idx) in cand_seq._bigrams:
+                    accepted_sequences.append(cand_seq)
+                    continue
                 # add the predicted word to get a new candidate
                 next_prob = pred[next_idx]
                 new_candidate = cand_seq.add_token(next_idx,next_prob)
@@ -129,21 +138,29 @@ def generate_predictions_beam(image_path, width, num_neighbors,
             population = tmp
             break
     # add current population to accepted sequences
-    accepted_sequences = sorted(accepted_sequences + population,
-                                key = lambda x: x._probsum/x._num_elem**alpha)[-top_n:]
+    accepted_sequences = sorted(accepted_sequences + population, reverse = True)
     # build output JSON data 
+    num_accepted = 0
     values = []
     x = []
     y = []
-    for acc_seq in accepted_sequences[-1*(max(width, len(accepted_sequences))):]:
-        y.append(acc_seq.to_words(reverse_tokenizer,end_idx))
-        x.append(round(acc_seq._probsum/acc_seq._num_elem**alpha,3))
+    for acc_seq in accepted_sequences:
+        # convert current sequence to words
+        seq_string = acc_seq.to_words(reverse_tokenizer,end_idx)
+        # if its not already in one of the word lists, accept it.
+        if seq_string not in y:
+            y.append(seq_string)
+            x.append(acc_seq.probsum())
+            num_accepted += 1
+            # if you've already accepted <top_n>, you're done
+            if num_accepted >= top_n:
+                break
 
-    output = [{"x":x, 
+    output = [{"x":x[::-1], 
                 "y":"", 
                 "type":'bar', 
                 'orientation':'h', 
-                'text': y, 
+                'text': y[::-1], 
                 'textposition': 'auto',
                 'marker': {
                     'color': 'rgb(158,202,225)',
@@ -160,8 +177,19 @@ def generate_predictions_beam(image_path, width, num_neighbors,
 
 @app.route('/', methods=['GET'])
 def index():
+    # sample 9 images and captions
+    smpl = valid_set.sample(9)
+    # isolate captions and paths, then reshape to 2d array
+    paths = smpl.photo_id.values
+    captions = smpl.caption.values
+    # put in a dictionary
+    photo_captions = {
+        "first": zip(paths[:3], captions[:3]),
+        "second": zip(paths[3:6], captions[3:6]),
+        "third": zip(paths[6:9], captions[6:9])
+    }
     # Main page
-    return render_template('index.html')
+    return render_template('index.html',photo_captions=photo_captions)
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -183,11 +211,22 @@ def predict():
 
     return None
 
+@app.route('/sample_image', methods=['GET', 'POST'])
+def sample_image():
+    if request.method == 'POST':
+        # get the file path the user asked for
+        sample_path = request.data.decode('utf-8')[1:]
+        # Make prediction
+        preds = generate_predictions_beam(sample_path, width = 5, num_neighbors = 3)
+        return jsonify(preds)
+    return None
+
 if __name__ == "__main__":
     # load all the models to memory
     load_image_processor()
     load_caption_model()
     load_tokenizer()
+    load_validation()
     http_server = WSGIServer(('', 5000), app)
     http_server.serve_forever()
 
