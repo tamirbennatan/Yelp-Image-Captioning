@@ -184,9 +184,9 @@ def index():
     captions = smpl.caption.values
     # put in a dictionary
     photo_captions = {
-        "first": zip(paths[:3], captions[:3]),
-        "second": zip(paths[3:6], captions[3:6]),
-        "third": zip(paths[6:9], captions[6:9])
+        "first": list(zip(paths[:3], captions[:3])),
+        "second": list(zip(paths[3:6], captions[3:6])),
+        "third": list(zip(paths[6:9], captions[6:9]))
     }
     # Main page
     return render_template('index.html',photo_captions=photo_captions)

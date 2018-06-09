@@ -34,7 +34,7 @@
     </div>
 </body>
 
-<!-- Modal content -->
+<!-- 'How does this work?' Modal content -->
 <div class="modal fade bd-description-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -50,6 +50,7 @@
     $(document).ready(function () {
     // Init
     $('.image-section').hide();
+    $(".sample-img-preview").hide();
     $('.loader').hide();
     $('#result').hide();
 
@@ -66,6 +67,9 @@
         }
     }
     $("#imageUpload").change(function () {
+        $('.sample-img-preview').hide();
+        $('#sample-image-section').hide();
+        $('.img-preview').show();
         $('.image-section').show();
         $('#btn-predict').show();
         readURL(this);
@@ -108,15 +112,27 @@
                   }
                 }
 
-                Plotly.newPlot('myDiv', plotData, layout);
+                Plotly.newPlot('chartDiv', plotData, layout);
             },
         });
     });
 
-    $(".sample_img").click(function(){
+    $(".sample-image").click(function(){
 
         // Hide all modals
         $(".modal").modal('hide');
+        //show the sample image section
+        $('#sample-image-section').show();
+        // hide the uploaded image section
+        $('.image-section').hide();
+        $('.img-preview').hide();
+        // hide previous sample images
+        $('.sample-img-preview').hide();
+         // get the source of the image that was elected
+        var selected_image_src = $(this).attr("src");
+        // show the images that have this source
+        $('div[id="' + selected_image_src + '"]').show();
+        // show the loader
         $('.loader').show();
 
         // store the source of the image to show
@@ -151,13 +167,11 @@
                   }
                 }
 
-                Plotly.newPlot('myDiv', plotData, layout);
+                Plotly.newPlot('chartDiv', plotData, layout);
             },
         });
 
     });
-
-
 });
 
     

@@ -44,6 +44,9 @@ input[type="file"] {
     animation: spin 1s linear infinite;
 }
 
+.sample-img-preview{
+    border-width:border: 8px solid #f3f3f3; /* Light grey */
+}
 
 @keyframes spin {
     0% { transform: rotate(0deg); }

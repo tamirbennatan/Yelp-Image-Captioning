@@ -5,12 +5,12 @@
 <div>
     <div class="row">
         <form id="upload-file" method="post" enctype="multipart/form-data">
-            <label for="imageUpload" class="upload-label">
+            <label for="imageUpload" class="btn btn-primary" style="height:40px">
                 Upload image...
             </label>
             <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
         </form>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-image-modal-lg">Large modal</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-image-modal-lg" style="height:40px">Sample Images</button>
     </div>
     <!-- Modal content for sample images -->
     <div class="modal fade bd-image-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -21,7 +21,7 @@
             {% for eachpic in photo_captions.first %}
                 <div class="col-md-4">
                     <div class="thumbnail">
-                        <img src= "{{ url_for('static', filename=eachpic[0]) }}" alt="Lights" style="width:100%" class="sample_img">
+                        <img src= "{{ url_for('static', filename=eachpic[0]) }}" alt="Lights" style="width:100%" class="sample-image">
                         <div class="caption">
                           <p>{{eachpic[1]}}</p>
                         </div>
@@ -33,7 +33,7 @@
             {% for eachpic in photo_captions.second %}
                 <div class="col-md-4">
                     <div class="thumbnail border">
-                        <img src= "{{ url_for('static', filename=eachpic[0]) }}"  alt="Lights" style="width:100%" class="sample_img">
+                        <img src= "{{ url_for('static', filename=eachpic[0]) }}"  alt="Lights" style="width:100%" class="sample-image">
                         <div class="caption">
                           <p>{{eachpic[1]}}</p>
                         </div>
@@ -45,7 +45,7 @@
             {% for eachpic in photo_captions.third %}
                 <div class="col-md-4">
                     <div class="thumbnail">
-                        <img src= "{{ url_for('static', filename=eachpic[0]) }}"  alt="Lights" style="width:100%" class="sample_img">
+                        <img src= "{{ url_for('static', filename=eachpic[0]) }}"  alt="Lights" style="width:100%" class="sample-image">
                         <div class="caption">
                           <p>{{eachpic[1]}}</p>
                         </div>
@@ -56,37 +56,35 @@
         </div>
       </div>
     </div>
-    <div class="row">
-        <div>
-            <div class="image-section" style="display:none;width:40%">
-                <div class="img-preview">
-                    <div id="imagePreview">
-                    </div>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+    <div id="image-preview-images" class="row">
+        <div class="image-section" style="display:none;width:40%">
+            <div class="img-preview">
+                <div id="imagePreview">
                 </div>
             </div>
-            <div class="sample-images" style="width:40%">
-                {% for eachpic in photo_captions.first %}
-                <div id="{{eachpic[0]}}" class="sample-img-preview thumbnail border">
-                    <img src= "{{ url_for('static', filename=eachpic[0]) }}"  style="width:100%">
-                </div>
-                {% endfor %}
-                {% for eachpic in photo_captions.second %}
-                <div id="{{eachpic[0]}}"  class="sample-img-preview thumbnail border">
-                    <img src= "{{ url_for('static', filename=eachpic[0]) }}"  style="width:100%">
-                </div>
-                {% endfor %}
-                {% for eachpic in photo_captions.third %}
-                <div id="{{eachpic[0]}}"  class="sample-img-preview thumbnail border">
-                    <img src= "{{ url_for('static', filename=eachpic[0]) }}"  style="width:100%">
-                </div>
-                {% endfor %}
+            <div>
+                <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
             </div>
-            <div class="loader" style="display:none;"></div>
         </div>
-        <div id="myDiv"> </div>
+        <div id="sample-image-section" style="width:40%">
+            {% for eachpic in photo_captions.first %}
+                <div id="{{ url_for('static', filename=eachpic[0]) }}" class="sample-img-preview thumbnail border" >
+                    <img src= "{{ url_for('static', filename=eachpic[0]) }}">
+                </div>
+            {% endfor %}
+            {% for eachpic in photo_captions.second %}
+            <div id="{{ url_for('static', filename=eachpic[0]) }}"  class="sample-img-preview thumbnail border">
+                <img src= "{{ url_for('static', filename=eachpic[0]) }}">
+            </div>
+            {% endfor %}
+            {% for eachpic in photo_captions.third %}
+            <div id="{{ url_for('static', filename=eachpic[0]) }}"  class="sample-img-preview thumbnail border">
+                <img src= "{{ url_for('static', filename=eachpic[0]) }}">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="loader" style="display:none;"></div>
+        <div id="chartDiv" style="width:50%"> </div>
     </div>
 </div>
 
