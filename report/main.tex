@@ -47,6 +47,8 @@
 \usepackage[flushleft]{threeparttable}
 \usepackage[utf8]{inputenc}
 \usepackage{capt-of}
+\usepackage{csquotes}
+\usepackage{caption}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -216,6 +218,51 @@
   biburl    = {https://dblp.org/rec/bib/journals/corr/LinMBHPRDZ14},
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
+
+@article{wu,
+  author    = {Yonghui Wu and
+               Mike Schuster and
+               Zhifeng Chen and
+               Quoc V. Le and
+               Mohammad Norouzi and
+               Wolfgang Macherey and
+               Maxim Krikun and
+               Yuan Cao and
+               Qin Gao and
+               Klaus Macherey and
+               Jeff Klingner and
+               Apurva Shah and
+               Melvin Johnson and
+               Xiaobing Liu and
+               Lukasz Kaiser and
+               Stephan Gouws and
+               Yoshikiyo Kato and
+               Taku Kudo and
+               Hideto Kazawa and
+               Keith Stevens and
+               George Kurian and
+               Nishant Patil and
+               Wei Wang and
+               Cliff Young and
+               Jason Smith and
+               Jason Riesa and
+               Alex Rudnick and
+               Oriol Vinyals and
+               Greg Corrado and
+               Macduff Hughes and
+               Jeffrey Dean},
+  title     = {Google's Neural Machine Translation System: Bridging the Gap between
+               Human and Machine Translation},
+  journal   = {CoRR},
+  volume    = {abs/1609.08144},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1609.08144},
+  archivePrefix = {arXiv},
+  eprint    = {1609.08144},
+  timestamp = {Thu, 01 Mar 2018 22:53:14 +0100},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/WuSCLNMKCGMKSJL16},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
 \end{filecontents}
 
 
@@ -239,6 +286,7 @@ Everything Looks Like Chicken (and Waffles)
 \nocite{8k}
 \nocite{30k}
 \nocite{coco}
+\nocite{wu}
 
 \maketitle
 \thispagestyle{empty}
@@ -270,7 +318,39 @@ In recent years, the deep learning community has have achieved great success in 
 Vinyals et al (2014). describe such a system, which utilizes the power of Convolutional Neural Networks (CNN) for extracting complex visual features from images, and Recurrent Neural Networks (RNN) for generating new sequences. Inspired by the encoder-decoder framework for machine translation, the authors use a deep CNN to encode images to fixed-length vector representation, and feed this representation to an RNN which is used to generate a caption (further details in section III). 
 
 
-\begin{figure*}[ht]
+In their 2017 papers, Tanti et al. describe a set of architectures that fall under the general encoder-decoder framework. The primary difference between these architectures concerns how to feed the image features to the RNN layers, if at all. Tanti et al. rigorously test the efficacy of image captioning models with varying architectures on canonical image captioning datasets, in an attempt to deduce favorable architectures for image captioning models, and to form a conjecture as to what broad classes of tasks RNNs are best suited for.
+
+Xu et al. (2016) achieve state of the art performance on standard datasets by incorporating an attention machanism. The authors argue that attention proves useful for the image captioning problem, as a network can learn to focus on the important features of an image, and ignore noisy features that result from cluttered images. Attention also provides additional interpretability to an image captioning model, as one can visualize what section of an image the attention is focused on at each time step. 
+
+Previous work focuses on the use of specialized datasets that were collected for the purpose of image captioning and object segmentation tasks, such as Flickr-8k (Rashtchian et al.; 2010), Flickr-30k (Young et al.; 2014), and MS-COCO (Lin et al.; 2014). These datasets were collected by giving human annotators detailed instructions on how to annotate each image, resulting in relativly clean, albeit synthetic datasets. This work uses a much more difficult, real-world dataset collected by Yelp. As users are given no instructions on how to annotate each image before uploading it to the site, this dataset makes it much more difficult to learn an effective image captioning network. In this work, I discuss some of these difficulties, and undesireable behaviors that arise when training an image captioning network on such data. I also experiment with several architectures proposed by Tanti et al., in an attempt to study which architectures perform best under such circumstances.
+
+
+\section{THEORETICAL BACKGROUND}
+
+In this section, I discuss several abstract perspectives regarding the problem of Neural Image Captioning (NIC) which motivated many of the design choices and experiments that follow. First, I discuss how one can fit the problem of generating a caption of an image into the probablistic framework. Then, I briefly describe encoder-decoder models, and how the models I built are inspired by the use of the encoder-decoder  framework in neural machine translation. Finally, I highlight an important design choice made when specifying the architecture of an NIC model, and the conceptual implication of this choice. 
+
+\subsection{Training as Maximizing Caption Likelihood}
+
+Although much of the previous work on image and video captioning involves stitching together several independent systems, researchers are achieving increasing success building single neural networks for image captioning that are fully trainable by back-propogation. Learning the parameters of such models has a natural probablistic interpretation; the objective is to directly maximize (with respect to the model weights, $\theta$) the joint probability of the predicted captions given input images, $I$, and model weights. For a dataset of $N$ image/caption pairs, this can be modeled as\footnote{Under the assumption that the correct captions the images are mutually independent.}:
+
+\begin{equation}
+\theta_{\text{MLE}} = \argmax_{\theta}{\sum_{i = 1}^N{\log(P(S^{(i)}|I^{(i)}; \theta)}}
+\end{equation} 
+
+Where $(S^{(i)}, I^{(i)})$ is the $i^{\text{th}}$ caption/image pair, and each caption $S^{(i)}$ is a sequence of tokens $(S^{(i)}_1, S^{(i)}_1, ... S^{(i)}_k)$ for a fixed maximum sequence length, $k$. 
+
+We may simplify this by the chain rule of probability:
+
+\begin{equation}
+\theta_{\text{MLE}} = \argmax_{\theta}{\sum_{i = 1}^N{\sum_{t = 1}^k{P(S_t^{(i)}|S_{t - 1}^{(i)} ... S_{1}^{(i)}; \theta)}}}
+\end{equation} 
+
+Equation (2) is the inspiration for the training schema I used to learn the weights, to be discussed further in section \textbf{SECTION HERE}.
+
+\subsection{Encoder-Decoder Framework for Image Captioning}
+
+
+\begin{figure*}[h]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -285,34 +365,84 @@ Vinyals et al (2014). describe such a system, which utilizes the power of Convol
 \caption{The encoder-decoder framework in neural machine translation models (left) and image captioning models (right). In machine translation applications, an input sequence is encoded by an RNN to a vector represention, before decoded to an output sequence. Analogously, a neural image captioning system uses a CNN to encode an input image before generating an output sequence.}
 \end{figure*}
 
-In their 2017 papers, Tanti et al. describe a set of architectures that fall under the general encoder-decoder framework. The primary difference between these architectures concerns how to feed the image features to the RNN layers, if at all. Tanti et al. rigorously test the efficacy of image captioning models with varying architectures on canonical image captioning datasets, in an attempt to deduce favorable architectures for image captioning models, and to form a conjecture as to what broad classes of tasks RNNs are best suited for.
+Traditional sequence prediction tasks - such as time series forecasting and language modeling - involve using a varying length sequence of inputs (whose ordering usually have a temporal interpretation), and predicting a single output (usually at the next time step). Neural networks are well equipped to solve this type of ``many-to-one" problem, as sequences of inputs may be coerced to a fixed number of time steps, so that the network does not need to account for varying length input or outputs.
 
-Xu et al. (2016) achieve state of the art performance on standard datasets by incorporating an attention machanism. The authors argue that attention proves useful for the image captioning problem, as a network can learn to focus on the important features of an image, and ignore noisy features that result from cluttered images. Attention also provides additional interpretability to an image captioning model, as one can visualize what section of an image the attention is focused on at each time step. 
+Another class of sequence prediction task are those with varying length sequences as both inputs and outputs. These so-called ``many-to-many" or ``sequence-to-sequence" problems are more difficult than many-to-one problems, as the network must learn to produce predictions of varying lenghts.
 
-Previous work focuses on the use of specialized datasets that were collected for the purpose of image captioning and object segmentation tasks, such as Flickr-8k (Rashtchian et al.; 2010), Flickr-30k (Young et al.; 2014), and MS-COCO (Lin et al.; 2014). These datasets were collected by giving human annotators detailed instructions on how to annotate each image, resulting in relativly clean, albeit synthetic datasets. This work uses a much more difficult, real-world dataset collected by Yelp. As users are given no instructions on how to annotate each image before uploading it to the site, this dataset makes it much more difficult to learn an effective image captioning network. In this work, I discuss some of these difficulties, and undesireable behaviors that arise when training an image captioning network on such data. I also experiment with several architectures proposed by Tanti et al., in an attempt to study which architectures perform best under such circumstances.
+An important example of a sequence-to-sequence problem is that of statistical machine translation (SMT). SMT models attempt to take in a sequence of words in one language, and output a sequence of words in another language, all while preserving the meaning of the input sequence and the coherence of the output sequence.
 
 
-\section{THEORETICAL BACKGROUND}
+An approach which has proven effective in sequence-to-sequence prediction problems, including machine translation, is called the ``Encoder-Decoder" architecture. This architecture is comprised of two parts: the ``encoder" takes in a varying length input sequence, and encodes it into a fixed-length vector representation. The ``decoder" model decodes this vector representation into a varying-length sequence prediction. 
 
-In this section, I discuss several abstract perspectives regarding the problem of Neural Image Captioning (NIC) which motivated many of the design choices and experiments that follow. First, I discuss how one can fit the problem of generating a caption of an image into the probablistic framework. Then, I briefly describe encoder-decoder models, and the NIC models I built are inspired by their encoder-decoder models in neural machine translation. Finally, I highlight an important design choice choosing the architecture of an NIC system, and the conceptual implication of this choice. 
+Cho et al. (2014) use this framework to build a SMT system which translates sequences from French to English. They use LSTM recurrent neural networks to encode input sequences, and LSTMs to decode the encoded representations to form the predictions. Cho et al. show that the encoded representations of input sequences preserve syntactic and semantic structure - thus, this representation is often referred to as a ``sequence embedding." Variants of encoder-decoder models have become the state of the art in machine translation; in fact, Google has adopted this approach in their Google Translate Service (Wu et al.; 2016).
 
-\subsection{Training as Maximizing Caption Likelihood}
+Modern neural image captioning (NIC) systems, including those described in this paper, adopt this approach for the problem of image captioning. Image captioning is similar to machine translation in that the output is a varying length sequence of natural language, but differs in that the input is an image, rather than a sequence. Thus, instead of using RNN models such as LSTMs to encode the input, NIC systems typically use CNN models to form a vector representation from an image. Recurrent neural networks then use this representation to form an output sequence. Thus, NIC systems fall under the Encoder-Decoder framework, with CNNs acting as encoders and RNNs acting as decoders [figure 1]. 
 
-Although much of the work on image and video captioning involves stiching together several independent systems, researchers are achieving increasing success building individual neural networks that are fully trainable by back-propogation. Learning the parameters of such models has a natural probablistic interpretation; the objective is to directly maximize (with respect to the model weights, $\theta$) the probability of the correct caption given the weights and an image, $I$. For a dataset of $N$ image/caption pairs, this can be modeled as\footnote{Under the assumption that the correct captions the images are mutually independent.}:
 
-\begin{equation}
-\theta^* = \argmax_{\theta}{\sum_{i = 1}^N{\log(P(S^{(i)}|I^{(i)}; \theta)}}
-\end{equation} 
+The use of CNNs as encoders is justified by the success of CNNs in core computer vision tasks, such as image classification and segmentation. It is believed that CNNs succeed in these tasks becasue they can extract meaningful and complex features images effectively. Thus, just as LSTMs an encode the semantic and syntactic of an input sequence in SMT applications, it is believed that CNNs encode meaningful properties of an input image in NIC systems.
 
-Where $(S^{(i)}, I^{(i)})$ is the $i^{\text{th}}$ caption/image pair, and each caption $S^{(i)}$ is a sequence of tokens $(S^{(i)}_1, S^{(i)}_1, ... S^{(i)}_k)$ for a fixed maximum sequence length, $k$. 
+\subsection{Merge and Inject Models}
 
-We may simplify this by the chain rule of probability:
+In a NIC system, CNN image features are combined with previously predicted tokens in a sequence to predict the next token in a sequence. The Encoder-Decoder framework includes a broad class of model architectures, and there are many ways to condition the sequence prediction on the image features, each of which uses the assigns a different role to the RNN component of a NIC system. 
 
-\begin{equation}
-\theta^* = \argmax_{\theta}{\sum_{i = 1}^N{\sum_{t = 1}^k{P(S_t^{(i)}|S_{t - 1}^{(i)} ... S_{1}^{(i)}; \theta)}}}
-\end{equation} 
+In their paper \emph{What is the Role of Recurrent Neural Networks (RNNs) in an Image Caption Generator?}, 
+Tanti et al. describe two important classes of NIC models that differ in their method of incorporating image features. 
 
-Equation (2) is the inspiration for the training schema I used to learn the weights, to be discussed further in section \textbf{SECTION HERE}.
+The first, referred to as ``Condition-by-Inject" (or ``Inject" models for short), incorporate the CNN image features directly to the RNN component. Using both the image features and the previously predicted tokens to predict the next token of the sequence. This is ususally done by conditioning the internal state of the RNN cells with the image representation, or treating the image representation as the first `word' in the input sequence. The second method, called ``Condition-by-Merge" (or ``Merge" models for short), never incorporates the image features into the RNN model. Instead, the RNN is used to encode the linguistic features from previously predicted tokens, independent of the perceptual encoding formed by the CNN. Then, the linguistic and pereceptual encodings are merged to a single representation, from which the output prediction is made [figure 2]. 
+
+\begin{figure*}[h]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.85\linewidth]{inject_scheme}
+  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.85\linewidth]{merge_scheme}
+  \label{fig:test2}
+\end{minipage}
+\caption{A bare-bones diagram of the Inject architecture (left) and Merge architecture (right). The former conditions the RNN with both the image and linguistic features, and uses the RNN to generate new tokens. The uses the RNN to encode the previously predicted tokens into a vector representation, rather than to generate new tokens.}
+\end{figure*}
+
+The Inject and Merge architectures assign different conceptual roles to the RNN in a NIC system. In the Inject model, both perceptual and linguistic features are available to the RNN, which is responsible for generating the next predicted token. Thus, the RNN acts as a ``generator" in the Inject architecture. In contrast, the RNN has no access to the image freatures in the Merge architecture. Instead, the RNN encodes an input sequence into a fixed length vector represenation, and a later fully connected layer is responsible for generation of new tokens. Thus, in the Inject architectures, the RNN can be thought of as an encoder, rather than a generator. 
+
+In the experiments described in section \textbf{ENTER SECTION}, I compare models using the Inject and Merge architectures. The idea that the choice of an Inject/Merge architecture dictates the `role' of the RNN in a NIC adds adds a new persepctive to these experiments. The relative efficacy of one architecture over another not only shows us which architecture is more appropriate for this taks, but provides insights into what settings RNNs best suited in general.  
+
+\section{The Yelp Dataset}
+
+Yelp maintains \href{https://www.yelp.com/dataset}{a public dataset} for the purposes of research and education. Part of this dataset is a collection of over 200,000 images uploaded by users, 100,807 with captions written by users upon uploading these images. This subset of images is what I used to train my image captioning system. 
+
+Compared to standard benchmark datasets for image captioning, such as Flickr-8k and Flickr-30k, the Yelp dataset makes for a much more difficult task in training an effective NIC model.
+
+Standard datasets typically have 4-8 training captions per image, which helps elucidate which words are related the an image's content, and which words are a result of more noisy phenomena, such as an author's writing style. 
+
+More importantly, datasets such as Flickr-8k and Flickr-30k were collected by giving human subjects detailed instructions on how to form a training caption [figure 3]. In contrast Yelp users are given no guidance on what photos to upload to the site, nor how to write corresponding captions. The result is a dataset wit a much larger variablility in caption style, content and relevence to the task of image captioning. More severely, since the users are not given a common set of instructions on how to construct training captions, the task of modeling the image-caption relationship is not well defined. Figure 4 shows four images that make it difficult to train a NIC on the Yelp image dataset. 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=1\linewidth]{boy}
+\caption{Instructions presented to Amazon Turkers in the collection of the Flickr-8k dataset (Rashtchian et al., 2010). Image extracted directly from [7].}
+\label{fig:test1}
+\end{figure}
+
+
+\begin{figure}[]
+\centering
+\includegraphics[width=1\linewidth]{im_quad}
+\captionsetup{singlelinecheck=off}
+\caption[list=off]{
+Sample images from the Yelp image dataset, chosen to exemplify the varying sources of noise in the dataset.
+\begin{itemize}
+\item \emph{Top-left:} Rarely encountered noun-phrases such as `Artery clogger' and apocryphal words like `Headwhich' make it difficult to identify words tied to an image's content.
+\item \emph{Top-right:} Captions which are unrelated to the image content.
+\item \emph{bottom-left:} Wordy captions, which are likely to have content that is particular to an image, and does not generalize to images with similar content.
+\item \emph{bottom-right:} Over simplified captions. This training example may cause a neural network to learn a link between the features of strawberry shortcake to the word \emph{dessert}, which describes a much larger class of dishes.
+\end{itemize}
+}
+\end{figure}
+
+It's clear that for a NIC to perform well on the Yelp dataset, one would have to invest considerable effort in structuring and cleaning the training data. As I only did minimal preprocessing (see section \textbf{INSERT PREPROCESSING SECTION}, I do not expect my system to generalize well. Instead, my goal is to study the practical challenges of building an image captioning system on `real-life' data. Perhaps the most pertinent challenge is collecting structured data which is designed for the task.
 
 \section{METHODOLOGY}
 

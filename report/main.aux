@@ -25,50 +25,62 @@
 \citation{8k}
 \citation{30k}
 \citation{coco}
+\citation{wu}
 \@writefile{toc}{\contentsline {section}{\numberline {I}INTRODUCTION}{1}{section.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}RELATED WORK}{1}{section.2}}
-\newlabel{fig:test1}{{II}{2}{RELATED WORK}{section.2}{}}
-\newlabel{fig:test2}{{II}{2}{RELATED WORK}{section.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The encoder-decoder framework in neural machine translation models (left) and image captioning models (right). In machine translation applications, an input sequence is encoded by an RNN to a vector represention, before decoded to an output sequence. Analogously, a neural image captioning system uses a CNN to encode an input image before generating an output sequence.}}{2}{figure.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {III}THEORETICAL BACKGROUND}{2}{section.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-A}Training as Maximizing Caption Likelihood}{2}{subsection.3.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {IV}METHODOLOGY}{2}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Regularized Logistic Regression: Model Hyperparameters}{2}{subsection.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-B}Feedforward Neural Network: Model Hyperparameters}{3}{subsection.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-C}Feedforward Neural Network: Learning Optimizations}{3}{subsection.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-D}Convolutional Neural Network: Hyperparameter Tuning}{3}{subsection.4.4}}
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Hyperparameter Ranges Explored for CNN models}}{3}{table.1}}
-\newlabel{my-label}{{I}{3}{Hyperparameter Ranges Explored for CNN models}{table.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Constrained Hyperparameter Ranges}}{3}{table.2}}
-\newlabel{my-label}{{II}{3}{Constrained Hyperparameter Ranges}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-E}CNN: Learning Optimization}{3}{subsection.4.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-F}CNN: Aggregated Predictions}{3}{subsection.4.6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Learning curves for training periods with $\eta = .0001$ and $\eta = .00005$, with early stopping. Note: training accuracy is lower than validation accuracy. This is because we used data augmentation, and the new randomly rotated images made the training data "harder" to learn than the validation data.}}{4}{figure.2}}
-\newlabel{figurelabel}{{2}{4}{Learning curves for training periods with $\eta = .0001$ and $\eta = .00005$, with early stopping. Note: training accuracy is lower than validation accuracy. This is because we used data augmentation, and the new randomly rotated images made the training data "harder" to learn than the validation data}{figure.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}RESULTS}{4}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {V-A}Regularized Logistic Regression}{4}{subsection.5.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Best Logistic Regression Models, Trained with l1/l2 Loss}}{4}{table.3}}
-\newlabel{my-}{{III}{4}{Best Logistic Regression Models, Trained with l1/l2 Loss}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {V-B}Feedforward Neural Network}{4}{subsection.5.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces FFNN Architectures}}{4}{table.4}}
-\newlabel{my-label}{{IV}{4}{FFNN Architectures}{table.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Validation Accuracies for FFNN Experiments}}{4}{table.5}}
-\newlabel{my-label}{{V}{4}{Validation Accuracies for FFNN Experiments}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-B}Encoder-Decoder Framework for Image Captioning}{2}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {III-C}Merge and Inject Models}{2}{subsection.3.3}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:test1}{{\caption@xref {fig:test1}{ on input line 358}}{3}{Encoder-Decoder Framework for Image Captioning}{figure.caption.1}{}}
+\newlabel{fig:test2}{{\caption@xref {fig:test2}{ on input line 363}}{3}{Encoder-Decoder Framework for Image Captioning}{figure.caption.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The encoder-decoder framework in neural machine translation models (left) and image captioning models (right). In machine translation applications, an input sequence is encoded by an RNN to a vector represention, before decoded to an output sequence. Analogously, a neural image captioning system uses a CNN to encode an input image before generating an output sequence.\relax }}{3}{figure.caption.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}The Yelp Dataset}{3}{section.4}}
+\newlabel{fig:test1}{{\caption@xref {fig:test1}{ on input line 398}}{4}{Merge and Inject Models}{figure.caption.2}{}}
+\newlabel{fig:test2}{{\caption@xref {fig:test2}{ on input line 403}}{4}{Merge and Inject Models}{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A bare-bones diagram of the Inject architecture (left) and Merge architecture (right). The former conditions the RNN with both the image and linguistic features, and uses the RNN to generate new tokens. The uses the RNN to encode the previously predicted tokens into a vector representation, rather than to generate new tokens.\relax }}{4}{figure.caption.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Instructions presented to Amazon Turkers in the collection of the Flickr-8k dataset (Rashtchian et al., 2010). Image extracted directly from [7].\relax }}{4}{figure.caption.3}}
+\newlabel{fig:test1}{{3}{4}{Instructions presented to Amazon Turkers in the collection of the Flickr-8k dataset (Rashtchian et al., 2010). Image extracted directly from [7].\relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}METHODOLOGY}{4}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-A}Regularized Logistic Regression: Model Hyperparameters}{4}{subsection.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces list=off}}{4}{figure.caption.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-B}Feedforward Neural Network: Model Hyperparameters}{4}{subsection.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-C}Feedforward Neural Network: Learning Optimizations}{4}{subsection.5.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-D}Convolutional Neural Network: Hyperparameter Tuning}{5}{subsection.5.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-E}CNN: Learning Optimization}{5}{subsection.5.5}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Hyperparameter Ranges Explored for CNN models\relax }}{5}{table.caption.5}}
+\newlabel{my-label}{{I}{5}{Hyperparameter Ranges Explored for CNN models\relax }{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Constrained Hyperparameter Ranges\relax }}{5}{table.caption.6}}
+\newlabel{my-label}{{II}{5}{Constrained Hyperparameter Ranges\relax }{table.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Learning curves for training periods with $\eta = .0001$ and $\eta = .00005$, with early stopping. Note: training accuracy is lower than validation accuracy. This is because we used data augmentation, and the new randomly rotated images made the training data "harder" to learn than the validation data.\relax }}{5}{figure.caption.7}}
+\newlabel{figurelabel}{{5}{5}{Learning curves for training periods with $\eta = .0001$ and $\eta = .00005$, with early stopping. Note: training accuracy is lower than validation accuracy. This is because we used data augmentation, and the new randomly rotated images made the training data "harder" to learn than the validation data.\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {V-F}CNN: Aggregated Predictions}{5}{subsection.5.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}RESULTS}{6}{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {VI-A}Regularized Logistic Regression}{6}{subsection.6.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Best Logistic Regression Models, Trained with l1/l2 Loss\relax }}{6}{table.caption.8}}
+\newlabel{my-}{{III}{6}{Best Logistic Regression Models, Trained with l1/l2 Loss\relax }{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {VI-B}Feedforward Neural Network}{6}{subsection.6.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces FFNN Architectures\relax }}{6}{table.caption.9}}
+\newlabel{my-label}{{IV}{6}{FFNN Architectures\relax }{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Validation Accuracies for FFNN Experiments\relax }}{6}{table.caption.10}}
+\newlabel{my-label}{{V}{6}{Validation Accuracies for FFNN Experiments\relax }{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {VI-C}Convolutional Neural Network}{6}{subsection.6.3}}
 \bibstyle{IEEEtran}
 \bibdata{main}
 \bibcite{vinyals}{1}
 \bibcite{tanti1}{2}
-\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Best CNN Models for Different Data Augmentation Schemes}}{5}{table.6}}
-\newlabel{my-label}{{VI}{5}{Best CNN Models for Different Data Augmentation Schemes}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {V-C}Convolutional Neural Network}{5}{subsection.5.3}}
-\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Highest performing CNN Models and Aggregations}}{5}{table.7}}
-\newlabel{my-label}{{VII}{5}{Highest performing CNN Models and Aggregations}{table.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}DISCUSSION AND CONCLUSIONS}{5}{section.6}}
-\@writefile{toc}{\contentsline {section}{References}{5}{section*.1}}
 \bibcite{tanti2}{3}
 \bibcite{cho}{4}
 \bibcite{kumar}{5}
 \bibcite{xu}{6}
 \bibcite{8k}{7}
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Best CNN Models for Different Data Augmentation Schemes\relax }}{7}{table.caption.11}}
+\newlabel{my-label}{{VI}{7}{Best CNN Models for Different Data Augmentation Schemes\relax }{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}DISCUSSION AND CONCLUSIONS}{7}{section.7}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Highest performing CNN Models and Aggregations\relax }}{7}{table.caption.12}}
+\newlabel{my-label}{{VII}{7}{Highest performing CNN Models and Aggregations\relax }{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{References}{7}{section*.13}}
 \bibcite{30k}{8}
 \bibcite{coco}{9}
+\bibcite{wu}{10}
