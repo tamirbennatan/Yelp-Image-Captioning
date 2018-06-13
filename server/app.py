@@ -173,8 +173,6 @@ def generate_predictions_beam(image_path, width, num_neighbors,
             }]
     return output
 
-
-
 @app.route('/', methods=['GET'])
 def index():
     # sample 9 images and captions

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 JUN 2018 16:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 JUN 2018 19:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -97,8 +97,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \c@biography=\count90
 \@IEEEtranrubishbin=\box26
 )
-** ATTENTION: Overriding command lockouts (line 15).
-** ATTENTION: Overriding IEEE standard margins (line 18).
+** ATTENTION: Overriding command lockouts (line 17).
+** ATTENTION: Overriding IEEE standard margins (line 20).
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip47
@@ -987,8 +987,37 @@ xa \hfil }\fi \fi \fi .
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: threeparttable package is loaded.
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 57.
+\@float@every@algorithm=\toks29
+\c@algorithm=\count156
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count157
+\c@ALG@rem=\count158
+\c@ALG@nested=\count159
+\ALG@tlm=\skip61
+\ALG@thistlm=\skip62
+\c@ALG@Lnr=\count160
+\c@ALG@blocknr=\count161
+\c@ALG@storecount=\count162
+\c@ALG@tmpcounter=\count163
+\ALG@tmplength=\skip63
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 61.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/filecontents/filecontents.sty
 Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaT
 eX document
@@ -1015,46 +1044,46 @@ LaTeX Warning: Label `fig:test2' multiply defined.
 LaTeX Warning: Label `fig:test1' multiply defined.
 
 
-LaTeX Warning: Label `my-label' multiply defined.
+LaTeX Warning: Label `fig:test1' multiply defined.
 
 
-LaTeX Warning: Label `my-label' multiply defined.
+LaTeX Warning: Label `fig:test1' multiply defined.
 
 
-LaTeX Warning: Label `my-label' multiply defined.
+LaTeX Warning: Label `fig:test1' multiply defined.
 
 
-LaTeX Warning: Label `my-label' multiply defined.
+LaTeX Warning: Label `fig:test2' multiply defined.
 
 
-LaTeX Warning: Label `my-label' multiply defined.
+LaTeX Warning: Label `fig:test1' multiply defined.
 
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 278.
-LaTeX Font Info:    ... okay on input line 278.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 278.
-LaTeX Font Info:    ... okay on input line 278.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 278.
-LaTeX Font Info:    ... okay on input line 278.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 278.
-LaTeX Font Info:    ... okay on input line 278.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 278.
-LaTeX Font Info:    ... okay on input line 278.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 278.
-LaTeX Font Info:    ... okay on input line 278.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 278.
-LaTeX Font Info:    ... okay on input line 278.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 278.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 278.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 322.
+LaTeX Font Info:    ... okay on input line 322.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 322.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 322.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 278.
+LaTeX Font Info:    ... okay on input line 322.
 \AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring ON on input line 278.
+Package hyperref Info: Link coloring ON on input line 322.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1062,11 +1091,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count156
+\c@section@level=\count164
 )
-LaTeX Info: Redefining \ref on input line 278.
-LaTeX Info: Redefining \pageref on input line 278.
-LaTeX Info: Redefining \nameref on input line 278.
+LaTeX Info: Redefining \ref on input line 322.
+LaTeX Info: Redefining \pageref on input line 322.
+LaTeX Info: Redefining \nameref on input line 322.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
@@ -1075,17 +1104,17 @@ LaTeX Info: Redefining \nameref on input line 278.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count157
+\scratchcounter=\count165
 \scratchdimen=\dimen176
 \scratchbox=\box50
-\nofMPsegments=\count158
-\nofMParguments=\count159
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count160
+\nofMPsegments=\count166
+\nofMParguments=\count167
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count168
 \MPscratchDim=\dimen177
-\MPnumerator=\count161
-\makeMPintoPDFobject=\count162
-\everyMPtoPDFconversion=\toks30
+\MPnumerator=\count169
+\makeMPintoPDFobject=\count170
+\everyMPtoPDFconversion=\toks31
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1103,28 +1132,28 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 292.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 341.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 292.
+LaTeX Font Info:    Try loading font information for U+msa on input line 341.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 292.
+LaTeX Font Info:    Try loading font information for U+msb on input line 341.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (33.15768pt too wide) in paragraph at lines 292--292
+Overfull \hbox (33.15768pt too wide) in paragraph at lines 341--341
  [] 
  []
 
 
-Overfull \hbox (33.15768pt too wide) in paragraph at lines 292--292
+Overfull \hbox (33.15768pt too wide) in paragraph at lines 341--341
  [] 
  []
 
@@ -1132,37 +1161,37 @@ Overfull \hbox (33.15768pt too wide) in paragraph at lines 292--292
 
 
 ]
-<images/encoder_decoder_trans.png, id=96, 495.8525pt x 484.81125pt>
+<images/encoder_decoder_trans.png, id=72, 495.8525pt x 484.81125pt>
 File: images/encoder_decoder_trans.png Graphic file (type png)
 
 <use images/encoder_decoder_trans.png>
-Package pdftex.def Info: images/encoder_decoder_trans.png used on input line 35
-7.
+Package pdftex.def Info: images/encoder_decoder_trans.png used on input line 40
+6.
 (pdftex.def)             Requested size: 164.41269pt x 160.75015pt.
 
-<images/encoder_decoder_cnn.png, id=98, 479.7925pt x 578.16pt>
+<images/encoder_decoder_cnn.png, id=74, 479.7925pt x 578.16pt>
 File: images/encoder_decoder_cnn.png Graphic file (type png)
 
 <use images/encoder_decoder_cnn.png>
-Package pdftex.def Info: images/encoder_decoder_cnn.png used on input line 362.
+Package pdftex.def Info: images/encoder_decoder_cnn.png used on input line 411.
 
 (pdftex.def)             Requested size: 164.41269pt x 198.12447pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] <images/inject_scheme.png, id=114, 845.1575pt x 212.795pt>
+[2] <images/inject_scheme.png, id=90, 845.1575pt x 212.795pt>
 File: images/inject_scheme.png Graphic file (type png)
 
 <use images/inject_scheme.png>
-Package pdftex.def Info: images/inject_scheme.png used on input line 397.
+Package pdftex.def Info: images/inject_scheme.png used on input line 446.
 (pdftex.def)             Requested size: 215.00478pt x 54.13374pt.
 
-<images/merge_scheme.png, id=115, 789.95125pt x 214.8025pt>
+<images/merge_scheme.png, id=91, 789.95125pt x 214.8025pt>
 File: images/merge_scheme.png Graphic file (type png)
 
 <use images/merge_scheme.png>
-Package pdftex.def Info: images/merge_scheme.png used on input line 402.
+Package pdftex.def Info: images/merge_scheme.png used on input line 451.
 (pdftex.def)             Requested size: 215.00478pt x 58.46286pt.
 
 
@@ -1170,98 +1199,128 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 422.
+               Default added (so using `tbp') on input line 471.
 
-<images/boy.png, id=117, 655.44875pt x 263.98625pt>
+<images/boy.png, id=93, 655.44875pt x 263.98625pt>
 File: images/boy.png Graphic file (type png)
  <use images/boy.png>
-Package pdftex.def Info: images/boy.png used on input line 424.
+Package pdftex.def Info: images/boy.png used on input line 473.
 (pdftex.def)             Requested size: 245.71811pt x 98.96237pt.
 
 [3 <./images/encoder_decoder_trans.png> <./images/encoder_decoder_cnn.png>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 430.
+               Default added (so using `tbp') on input line 479.
 
-<images/im_quad.png, id=125, 1170.3725pt x 843.15pt>
+<images/im_quad.png, id=101, 1170.3725pt x 843.15pt>
 File: images/im_quad.png Graphic file (type png)
  <use images/im_quad.png>
-Package pdftex.def Info: images/im_quad.png used on input line 432.
+Package pdftex.def Info: images/im_quad.png used on input line 481.
 (pdftex.def)             Requested size: 245.71811pt x 177.01526pt.
 
-Underfull \hbox (badness 1502) in paragraph at lines 442--442
+Underfull \hbox (badness 1502) in paragraph at lines 491--491
 []\OT1/ptm/m/it/10 Top-left: \OT1/ptm/m/n/10 Rarely en-coun-tered noun-phrases 
 such as
  []
 
-LaTeX Font Info:    Calculating math sizes for size <5.59998> on input line 453
-.
+<images/cnn_features.png, id=104, 3544.24126pt x 1216.545pt>
+File: images/cnn_features.png Graphic file (type png)
 
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.91995> not available
-(Font)              size <5> substituted on input line 453.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <2.79999> not available
-(Font)              size <5> substituted on input line 453.
+<use images/cnn_features.png>
+Package pdftex.def Info: images/cnn_features.png used on input line 510.
+(pdftex.def)             Requested size: 505.89pt x 173.63791pt.
 
 
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.91995> not available
-(Font)              size <5> substituted on input line 453.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <2.79999> not available
-(Font)              size <5> substituted on input line 453.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.91995> not available
-(Font)              size <5> substituted on input line 453.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <2.79999> not available
-(Font)              size <5> substituted on input line 453.
+Package xcolor Warning: Incompatible color definition on input line 515.
 
 [4 <./images/inject_scheme.png> <./images/merge_scheme.png> <./images/boy.png> 
 <./images/im_quad.png>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 487.
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 531.
 
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omspcr.fd
+File: omspcr.fd 
 )
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 487.
+LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 531.
 
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 501.
-
-<images/learning_curves.png, id=143, 313.17pt x 427.5975pt>
-File: images/learning_curves.png Graphic file (type png)
-
-<use images/learning_curves.png>
-Package pdftex.def Info: images/learning_curves.png used on input line 524.
-(pdftex.def)             Requested size: 187.90344pt x 256.56047pt.
- [5 <./images/learning_curves.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 564--565
-[]\OT1/ptm/m/n/10 After do-ing a thor-ough search through many
+Underfull \hbox (badness 10000) in paragraph at lines 531--531
+[][][][]\OT1/ptm/m/n/8 The regex pat-tern used to de-tect webite do-mains is
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 564--565
-[][]\OML/cmm/m/it/10 ; [][]$ \OT1/ptm/m/n/10 com-bi-na-tions, we
+Package xcolor Warning: Incompatible color definition on input line 533.
+
+
+Package xcolor Warning: Incompatible color definition on input line 533.
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 533--534
+\OT1/ptm/m/it/10 souf-fle \OT1/ptm/m/n/10 are con-sol-i-dated to the same to-ke
+ns. The
  []
 
+[5 <./images/cnn_features.png>]
+<images/caption_expand.png, id=128, 453.695pt x 255.95625pt>
+File: images/caption_expand.png Graphic file (type png)
 
-Overfull \hbox (1.824pt too wide) in paragraph at lines 570--578
- [][] 
+<use images/caption_expand.png>
+Package pdftex.def Info: images/caption_expand.png used on input line 553.
+(pdftex.def)             Requested size: 245.71811pt x 138.62439pt.
+
+Underfull \hbox (badness 4013) in paragraph at lines 560--561
+\OT1/ptm/m/n/10 caption pairs. When split-ting the dataset into train-
  []
 
-[6]
+<images/inject.png, id=129, 667.49374pt x 830.10126pt>
+File: images/inject.png Graphic file (type png)
+ <use images/inject.png>
+Package pdftex.def Info: images/inject.png used on input line 569.
+(pdftex.def)             Requested size: 202.35675pt x 251.65422pt.
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 633.
+<images/merge.png, id=130, 658.46pt x 721.69624pt>
+File: images/merge.png Graphic file (type png)
+ <use images/merge.png>
+Package pdftex.def Info: images/merge.png used on input line 574.
+(pdftex.def)             Requested size: 202.35675pt x 221.78537pt.
 
-(./main.bbl [7])
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 2894) has occurred while \output is active []
+
+ [6 <./images/caption_expand.png>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 604.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7 <./images/inject.png> <./images/merge.png>]
+<images/alpha_affect.png, id=162, 299.1175pt x 544.0325pt>
+File: images/alpha_affect.png Graphic file (type png)
+
+<use images/alpha_affect.png>
+Package pdftex.def Info: images/alpha_affect.png used on input line 671.
+(pdftex.def)             Requested size: 147.43236pt x 268.14719pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./main.bbl
+Underfull \vbox (badness 1609) has occurred while \output is active []
+
+ [8]
+Overfull \hbox (42.57921pt too wide) in paragraph at lines 132--140
+\OT1/ptm/m/n/8 5021-[]distributed-[]representations-[]of-[]words-[]and-[]phrase
+s-[]and-[]their-[]compositionality .
+ []
+
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1273,34 +1332,30 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 700.
-[8
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 681.
+[9
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 700.
+ <./images/alpha_affect.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 681.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 700.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 700.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 681.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 681.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3FEBA80C9C00E222260033016D7BC091;1449.
-
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 3.25002pt have occurred.
+(rerunfilecheck)             Checksum: 8290AB029F9F7BD8126773BA5747069B;925.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 700.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 681.
  ) 
 Here is how much of TeX's memory you used:
- 16452 strings out of 493089
- 285548 string characters out of 6134842
- 374146 words of memory out of 5000000
- 19673 multiletter control sequences out of 15000+600000
- 54546 words of font info for 128 fonts, out of 8000000 for 9000
+ 17008 strings out of 493089
+ 293462 string characters out of 6134842
+ 382881 words of memory out of 5000000
+ 20204 multiletter control sequences out of 15000+600000
+ 47586 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,17n,39p,10436b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,11n,42p,10436b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1308,19 +1363,20 @@ live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texli
 ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
 /2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/
-type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/
-times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utm
-r8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (8 pages, 2559510 bytes).
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
+e1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
+mes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8
+a.pfb>
+Output written on main.pdf (9 pages, 4058082 bytes).
 PDF statistics:
- 263 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 56 named destinations out of 1000 (max. 500000)
- 196 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 279 PDF objects out of 1000 (max. 8388607)
+ 225 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 500000)
+ 168 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,4 +8,5 @@ data/*
 server/imagecaption/*
 *latex/*
 *alpha.vs./*.jpg
+evaluation/activation_viz/*
 

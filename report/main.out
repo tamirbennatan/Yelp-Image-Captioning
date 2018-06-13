@@ -6,15 +6,9 @@
 \BOOKMARK [2][-]{subsection.3.3}{Merge and Inject Models}{section.3}% 6
 \BOOKMARK [1][-]{section.4}{The Yelp Dataset}{}% 7
 \BOOKMARK [1][-]{section.5}{METHODOLOGY}{}% 8
-\BOOKMARK [2][-]{subsection.5.1}{Regularized Logistic Regression: Model Hyperparameters}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.2}{Feedforward Neural Network: Model Hyperparameters}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.3}{Feedforward Neural Network: Learning Optimizations}{section.5}% 11
-\BOOKMARK [2][-]{subsection.5.4}{Convolutional Neural Network: Hyperparameter Tuning}{section.5}% 12
-\BOOKMARK [2][-]{subsection.5.5}{CNN: Learning Optimization}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.6}{CNN: Aggregated Predictions}{section.5}% 14
-\BOOKMARK [1][-]{section.6}{RESULTS}{}% 15
-\BOOKMARK [2][-]{subsection.6.1}{Regularized Logistic Regression}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.2}{Feedforward Neural Network}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.3}{Convolutional Neural Network}{section.6}% 18
-\BOOKMARK [1][-]{section.7}{DISCUSSION AND CONCLUSIONS}{}% 19
-\BOOKMARK [1][-]{section*.13}{References}{}% 20
+\BOOKMARK [2][-]{subsection.5.1}{Extracting Image Embeddings}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.2}{Caption Text Preprocessing}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.3}{Formatting Data for Training}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.4}{Model Architectures}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.5}{Inference as Beam Search}{section.5}% 13
+\BOOKMARK [1][-]{section*.9}{References}{}% 14

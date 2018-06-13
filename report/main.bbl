@@ -106,4 +106,36 @@ Y.~Wu, M.~Schuster, Z.~Chen, Q.~V. Le, M.~Norouzi, W.~Macherey, M.~Krikun,
   \url{http://arxiv.org/abs/1609.08144}
 \BIBentrySTDinterwordspacing
 
+\bibitem{vgg}
+K.~Simonyan and A.~Zisserman, ``Very deep convolutional networks for
+  large-scale image recognition,'' \emph{CoRR}, vol. abs/1409.1556, 2014.
+
+\bibitem{keras}
+F.~Chollet \emph{et~al.}, ``Keras,'' \url{https://keras.io}, 2015.
+
+\bibitem{imagenet}
+O.~Russakovsky, J.~Deng, H.~Su, J.~Krause, S.~Satheesh, S.~Ma, Z.~Huang,
+  A.~Karpathy, A.~Khosla, M.~Bernstein, A.~C. Berg, and L.~Fei-Fei, ``{ImageNet
+  Large Scale Visual Recognition Challenge},'' \emph{International Journal of
+  Computer Vision (IJCV)}, vol. 115, no.~3, pp. 211--252, 2015.
+
+\bibitem{zipf}
+\BIBentryALTinterwordspacing
+R.~E. Wylly, ``empirical and theoretical bases of zipf's law,'' \emph{empirical
+  and theoretical bases of Zipf's law}, vol.~30, p. 53–64, 1981. [Online].
+  Available:
+  \url{https://www.ideals.illinois.edu/bitstream/handle/2142/7182/librarytrendsv30i1g_opt.pdf?sequence=1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{word2vec}
+\BIBentryALTinterwordspacing
+T.~Mikolov, I.~Sutskever, K.~Chen, G.~S. Corrado, and J.~Dean, ``Distributed
+  representations of words and phrases and their compositionality,'' in
+  \emph{Advances in Neural Information Processing Systems 26}, C.~J.~C. Burges,
+  L.~Bottou, M.~Welling, Z.~Ghahramani, and K.~Q. Weinberger, Eds.\hskip 1em
+  plus 0.5em minus 0.4em\relax Curran Associates, Inc., 2013, pp. 3111--3119.
+  [Online]. Available:
+  \url{http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}
