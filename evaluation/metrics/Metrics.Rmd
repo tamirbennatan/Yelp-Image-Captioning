@@ -1,0 +1,229 @@
+```{R}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(jsonlite)
+library(reshape2)
+library(stringr)
+library(ggbeeswarm)
+```
+
+```{R}
+# Multiple plot function
+#
+# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
+# - cols:   Number of columns in layout
+# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
+#
+# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
+# then plot 1 will go in the upper left, 2 will go in the upper right, and
+# 3 will go all the way across the bottom.
+#
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+```
+
+
+## 1. Load data
+
+```{R}
+# Load metrics data
+df_metrics <- read_csv("./df_full.csv")
+# remove uneccessary column X1 - from saving index in pandas
+df_metrics <- select(df_metrics, -X1)
+```
+```{R}
+# load the full caption metadata
+captions <- jsonlite::stream_in(file("../../data/yelp_photos/photos.json"))
+```
+
+```{R}
+# add the label to the full dataset
+df_metrics <- df_metrics %>%
+      inner_join(
+            select(captions, photo_id, label)
+      )
+```
+
+```{R}
+# convert the `label` column to a factor
+df_metrics$label <- as.factor(df_metrics$label)
+```
+
+## 2. Calculate metric aggregates
+
+```{R}
+metrics <- df_metrics[,colnames(df_metrics)[12:65]]
+```
+```{R}
+plyr::colwise(mean)(metrics)
+```
+
+## 3. Label-wise metrics
+
+```{R}
+melted <- df_metrics[,colnames(df_metrics)[c(12:56, 66)]] %>%
+      melt(id.vars = c("label"))
+
+melted <- melted %>% 
+      mutate(alpha = str_extract(variable, "[6-8]"),
+             model = str_extract(variable, pattern = "([a-z_]+)(?=_[6-8])"), 
+             metric = str_extract(variable, pattern = "(?<=_[6-8]_)([a-z1-4_]+)"))
+```
+
+```{R}
+p1 <- melted %>%
+      filter(alpha == "6" & metric %in% c('bleu1','rouge_l')) %>%
+      group_by(label, model, metric) %>%
+      summarize(value = mean(value)) %>%
+      ggplot(aes(x = label, y = value)) + 
+      geom_col(fill = "#422040") + 
+      facet_grid(model~metric) +
+      coord_flip()+ 
+      ggtitle(paste(expression(alpha),"= .6"))
+
+p2 <- melted %>%
+      filter(alpha == "7" & metric %in% c('bleu1','rouge_l')) %>%
+      group_by(label, model, metric) %>%
+      summarize(value = mean(value)) %>%
+      ggplot(aes(x = label, y = value)) + 
+      geom_col(fill = "#E57A44") + 
+      facet_grid(model~metric)+
+      coord_flip() + 
+      ggtitle(paste(expression(alpha),"= .7"))
+
+p3 <- melted %>%
+      filter(alpha == "8" & metric %in% c('bleu1','rouge_l')) %>%
+      group_by(label, model, metric) %>%
+      summarize(value = mean(value)) %>%
+      ggplot(aes(x = label, y = value)) + 
+      geom_col(fill = "#BCD8C1") + 
+      facet_grid(model~metric)+
+      coord_flip() + 
+      ggtitle(paste(expression(alpha),"= .8"))
+
+ggsave("label_scores6.png", p1,width =3, height = 5)
+ggsave("label_scores7.png", p2,width =3, height = 5)
+ggsave("label_scores8.png", p3,width =3, height = 5)
+
+```
+
+```{R}
+p4 <- df_metrics %>%
+      count(label) %>%
+      rename(frequency = n) %>%
+      ggplot(aes(x = label, y = frequency, label = frequency)) + 
+            geom_col() + 
+            coord_flip() + 
+      geom_label() + 
+      ggtitle("Label frequency in validation set")
+
+p4
+
+ggsave("label_freq.png", p4, width = 5, height = 3)
+```
+
+```{R}
+group_colors <- c("alpha = 6" = "#422040", "alpha = 7" = "#E57A44", "alpha = 8" = "#BCD8C1")
+
+p5 = melted %>%
+      filter(metric %in% c("bleu1", "rouge_l")) %>%
+      group_by(alpha, model,metric) %>%
+      summarize(value = mean(value)) %>%
+      ungroup() %>%
+      mutate(alpha = paste("alpha =", alpha)) %>%
+      ggplot(aes(x = model, y = value, fill = alpha)) +
+      geom_col(show.legend = F) +
+      coord_flip() +
+      facet_grid(alpha~metric) +
+      scale_fill_manual(values=group_colors)
+
+ggsave("model_compare.png", p5, width = 5, height = 3)
+
+p5
+```
+
+```{R}
+captions <- df_metrics[,c(1,3:11)] %>%
+      melt(id.vars =c ("photo_id"))
+```
+
+```{R}
+captions <- captions %>%
+      mutate(alpha = str_extract(variable, "[6-8]"),
+             model = str_extract(variable, pattern = "([a-z_]+)(?=_[6-8])"), 
+             metric = str_extract(variable, pattern = "(?<=_[6-8]_)([a-z1-4_]+)"), 
+             caption_length = str_count(value, "\\w+"))
+```
+```{R}
+captions %>%
+      group_by(alpha, model) %>%
+      summarize(mean_length = mean(caption_length))
+```
+
+
+## 4. Id's of images of 'chicken and waffles'
+
+```{R}
+cw = df_metrics %>%
+      filter(str_detect(inject_6_pred,"chicken and waffles"))
+```
+
+
+```{R}
+for(i in 1:20){
+   print(paste('im = Image.open("../data/yelp_photos/photos/', cw$photo_id[i],'.jpg")' , sep = ""))  
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

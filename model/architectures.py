@@ -34,7 +34,7 @@ def get_merge_model(embedding_matrix,trainable = True):
     outputs = Dense(VOCAB_SIZE, activation='softmax')(dense2)
     # tie it together [image, seq] [word]
     model = Model(inputs=[inputs_photo, inputs_caption], outputs=outputs)
-    sgd = SGD(lr=0.008, decay=1e-6, momentum=0.9, nesterov=True)
+    sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
     model.compile(loss='sparse_categorical_crossentropy', optimizer=sgd)
     return(model)
 
@@ -60,7 +60,7 @@ def get_merge_add_model(embedding_matrix,trainable = True):
     outputs = Dense(VOCAB_SIZE, activation='softmax')(dense2)
     # tie it together [image, seq] [word]
     model = Model(inputs=[inputs_photo, inputs_caption], outputs=outputs)
-    sgd = SGD(lr=0.008, decay=1e-6, momentum=0.9, nesterov=True)
+    sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
     model.compile(loss='sparse_categorical_crossentropy', optimizer=sgd)
     return(model)
 

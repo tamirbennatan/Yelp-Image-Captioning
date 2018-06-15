@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 JUN 2018 19:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 JUN 2018 13:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1016,9 +1016,21 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip63
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box49
+\UL@hyphenbox=\box50
+\UL@skip=\skip64
+\UL@hook=\toks30
+\UL@height=\dimen176
+\UL@pe=\count164
+\UL@pixel=\dimen177
+\ULC@box=\box51
+Package: ulem 2012/05/18
+\ULdepth=\dimen178
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 61.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/filecontents/filecontents.sty
+Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/filecontents/filecontents.sty
 Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaT
 eX document
 )
@@ -1058,32 +1070,44 @@ LaTeX Warning: Label `fig:test2' multiply defined.
 
 LaTeX Warning: Label `fig:test1' multiply defined.
 
+
+LaTeX Warning: Label `fig:test1' multiply defined.
+
+
+LaTeX Warning: Label `fig:test1' multiply defined.
+
+
+LaTeX Warning: Label `fig:test1' multiply defined.
+
+
+LaTeX Warning: Label `fig:test1' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 322.
-LaTeX Font Info:    ... okay on input line 322.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 322.
-LaTeX Font Info:    ... okay on input line 322.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 322.
-LaTeX Font Info:    ... okay on input line 322.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 322.
-LaTeX Font Info:    ... okay on input line 322.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 322.
-LaTeX Font Info:    ... okay on input line 322.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 322.
-LaTeX Font Info:    ... okay on input line 322.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 322.
-LaTeX Font Info:    ... okay on input line 322.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 322.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 322.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 370.
+LaTeX Font Info:    ... okay on input line 370.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 370.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 370.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 322.
-\AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring ON on input line 322.
+LaTeX Font Info:    ... okay on input line 370.
+\AtBeginShipoutBox=\box52
+Package hyperref Info: Link coloring ON on input line 370.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1091,11 +1115,11 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count164
+\c@section@level=\count165
 )
-LaTeX Info: Redefining \ref on input line 322.
-LaTeX Info: Redefining \pageref on input line 322.
-LaTeX Info: Redefining \nameref on input line 322.
+LaTeX Info: Redefining \ref on input line 370.
+LaTeX Info: Redefining \pageref on input line 370.
+LaTeX Info: Redefining \nameref on input line 370.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
@@ -1104,17 +1128,17 @@ LaTeX Info: Redefining \nameref on input line 322.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count165
-\scratchdimen=\dimen176
-\scratchbox=\box50
-\nofMPsegments=\count166
-\nofMParguments=\count167
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count168
-\MPscratchDim=\dimen177
-\MPnumerator=\count169
-\makeMPintoPDFobject=\count170
-\everyMPtoPDFconversion=\toks31
+\scratchcounter=\count166
+\scratchdimen=\dimen179
+\scratchbox=\box53
+\nofMPsegments=\count167
+\nofMParguments=\count168
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count169
+\MPscratchDim=\dimen180
+\MPnumerator=\count170
+\makeMPintoPDFobject=\count171
+\everyMPtoPDFconversion=\toks32
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1132,167 +1156,175 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 341.
+LaTeX Font Info:    Calculating math sizes for size <16> on input line 392.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 392.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <16> not available
+(Font)              size <17.28> substituted on input line 392.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <16> not available
+(Font)              size <17.28> substituted on input line 392.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 392.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 392.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 392.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 341.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 341.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Overfull \hbox (33.15768pt too wide) in paragraph at lines 341--341
- [] 
+Overfull \hbox (2.51968pt too wide) in paragraph at lines 392--392
+ \OT1/pcr/m/n/9 https://github.com/tamirbennatan/Yelp-Image-Captioning 
  []
 
 
-Overfull \hbox (33.15768pt too wide) in paragraph at lines 341--341
- [] 
+Overfull \hbox (2.51968pt too wide) in paragraph at lines 392--392
+ \OT1/pcr/m/n/9 https://github.com/tamirbennatan/Yelp-Image-Captioning 
  []
 
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<images/encoder_decoder_trans.png, id=72, 495.8525pt x 484.81125pt>
+<images/encoder_decoder_trans.png, id=102, 495.8525pt x 484.81125pt>
 File: images/encoder_decoder_trans.png Graphic file (type png)
 
 <use images/encoder_decoder_trans.png>
-Package pdftex.def Info: images/encoder_decoder_trans.png used on input line 40
+Package pdftex.def Info: images/encoder_decoder_trans.png used on input line 46
 6.
 (pdftex.def)             Requested size: 164.41269pt x 160.75015pt.
 
-<images/encoder_decoder_cnn.png, id=74, 479.7925pt x 578.16pt>
+<images/encoder_decoder_cnn.png, id=104, 479.7925pt x 578.16pt>
 File: images/encoder_decoder_cnn.png Graphic file (type png)
 
 <use images/encoder_decoder_cnn.png>
-Package pdftex.def Info: images/encoder_decoder_cnn.png used on input line 411.
+Package pdftex.def Info: images/encoder_decoder_cnn.png used on input line 471.
 
 (pdftex.def)             Requested size: 164.41269pt x 198.12447pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[2] <images/inject_scheme.png, id=90, 845.1575pt x 212.795pt>
+[2] <images/inject_scheme.png, id=116, 845.1575pt x 212.795pt>
 File: images/inject_scheme.png Graphic file (type png)
 
 <use images/inject_scheme.png>
-Package pdftex.def Info: images/inject_scheme.png used on input line 446.
+Package pdftex.def Info: images/inject_scheme.png used on input line 506.
 (pdftex.def)             Requested size: 215.00478pt x 54.13374pt.
 
-<images/merge_scheme.png, id=91, 789.95125pt x 214.8025pt>
+<images/merge_scheme.png, id=117, 789.95125pt x 214.8025pt>
 File: images/merge_scheme.png Graphic file (type png)
 
 <use images/merge_scheme.png>
-Package pdftex.def Info: images/merge_scheme.png used on input line 451.
+Package pdftex.def Info: images/merge_scheme.png used on input line 511.
 (pdftex.def)             Requested size: 215.00478pt x 58.46286pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 471.
-
-<images/boy.png, id=93, 655.44875pt x 263.98625pt>
-File: images/boy.png Graphic file (type png)
- <use images/boy.png>
-Package pdftex.def Info: images/boy.png used on input line 473.
-(pdftex.def)             Requested size: 245.71811pt x 98.96237pt.
-
 [3 <./images/encoder_decoder_trans.png> <./images/encoder_decoder_cnn.png>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 479.
+               Default added (so using `tbp') on input line 531.
 
-<images/im_quad.png, id=101, 1170.3725pt x 843.15pt>
+<images/boy.png, id=126, 655.44875pt x 263.98625pt>
+File: images/boy.png Graphic file (type png)
+ <use images/boy.png>
+Package pdftex.def Info: images/boy.png used on input line 533.
+(pdftex.def)             Requested size: 245.71811pt x 98.96237pt.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 539.
+
+<images/im_quad.png, id=127, 1170.3725pt x 843.15pt>
 File: images/im_quad.png Graphic file (type png)
  <use images/im_quad.png>
-Package pdftex.def Info: images/im_quad.png used on input line 481.
+Package pdftex.def Info: images/im_quad.png used on input line 541.
 (pdftex.def)             Requested size: 245.71811pt x 177.01526pt.
 
-Underfull \hbox (badness 1502) in paragraph at lines 491--491
+Underfull \hbox (badness 1502) in paragraph at lines 551--551
 []\OT1/ptm/m/it/10 Top-left: \OT1/ptm/m/n/10 Rarely en-coun-tered noun-phrases 
 such as
  []
 
-<images/cnn_features.png, id=104, 3544.24126pt x 1216.545pt>
+[4 <./images/inject_scheme.png> <./images/merge_scheme.png> <./images/boy.png> 
+<./images/im_quad.png>]
+<images/cnn_features.png, id=140, 3544.24126pt x 1216.545pt>
 File: images/cnn_features.png Graphic file (type png)
 
 <use images/cnn_features.png>
-Package pdftex.def Info: images/cnn_features.png used on input line 510.
+Package pdftex.def Info: images/cnn_features.png used on input line 568.
 (pdftex.def)             Requested size: 505.89pt x 173.63791pt.
 
 
-Package xcolor Warning: Incompatible color definition on input line 515.
+Package xcolor Warning: Incompatible color definition on input line 573.
 
-[4 <./images/inject_scheme.png> <./images/merge_scheme.png> <./images/boy.png> 
-<./images/im_quad.png>]
-LaTeX Font Info:    Try loading font information for OMS+pcr on input line 531.
-
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 589.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omspcr.fd
 File: omspcr.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 531.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 589.
 
-Underfull \hbox (badness 10000) in paragraph at lines 531--531
+Underfull \hbox (badness 10000) in paragraph at lines 589--589
 [][][][]\OT1/ptm/m/n/8 The regex pat-tern used to de-tect webite do-mains is
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 533.
+Package xcolor Warning: Incompatible color definition on input line 591.
 
 
-Package xcolor Warning: Incompatible color definition on input line 533.
+Package xcolor Warning: Incompatible color definition on input line 591.
 
 
-Underfull \hbox (badness 1859) in paragraph at lines 533--534
+Underfull \hbox (badness 1859) in paragraph at lines 591--592
 \OT1/ptm/m/it/10 souf-fle \OT1/ptm/m/n/10 are con-sol-i-dated to the same to-ke
 ns. The
  []
 
-[5 <./images/cnn_features.png>]
-<images/caption_expand.png, id=128, 453.695pt x 255.95625pt>
+[5] <images/caption_expand.png, id=151, 453.695pt x 255.95625pt>
 File: images/caption_expand.png Graphic file (type png)
 
 <use images/caption_expand.png>
-Package pdftex.def Info: images/caption_expand.png used on input line 553.
+Package pdftex.def Info: images/caption_expand.png used on input line 611.
 (pdftex.def)             Requested size: 245.71811pt x 138.62439pt.
 
-Underfull \hbox (badness 4013) in paragraph at lines 560--561
+Underfull \hbox (badness 4013) in paragraph at lines 618--619
 \OT1/ptm/m/n/10 caption pairs. When split-ting the dataset into train-
  []
 
-<images/inject.png, id=129, 667.49374pt x 830.10126pt>
+<images/inject.png, id=152, 667.49374pt x 830.10126pt>
 File: images/inject.png Graphic file (type png)
  <use images/inject.png>
-Package pdftex.def Info: images/inject.png used on input line 569.
+Package pdftex.def Info: images/inject.png used on input line 627.
 (pdftex.def)             Requested size: 202.35675pt x 251.65422pt.
 
-<images/merge.png, id=130, 658.46pt x 721.69624pt>
+<images/merge.png, id=153, 658.46pt x 721.69624pt>
 File: images/merge.png Graphic file (type png)
  <use images/merge.png>
-Package pdftex.def Info: images/merge.png used on input line 574.
+Package pdftex.def Info: images/merge.png used on input line 632.
 (pdftex.def)             Requested size: 202.35675pt x 221.78537pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 2894) has occurred while \output is active []
-
- [6 <./images/caption_expand.png>]
+[6 <./images/cnn_features.png> <./images/caption_expand.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 604.
+put line 662.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1301,23 +1333,199 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [7 <./images/inject.png> <./images/merge.png>]
-<images/alpha_affect.png, id=162, 299.1175pt x 544.0325pt>
+<images/alpha_affect.png, id=184, 299.1175pt x 544.0325pt>
 File: images/alpha_affect.png Graphic file (type png)
 
 <use images/alpha_affect.png>
-Package pdftex.def Info: images/alpha_affect.png used on input line 671.
+Package pdftex.def Info: images/alpha_affect.png used on input line 729.
 (pdftex.def)             Requested size: 147.43236pt x 268.14719pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(./main.bbl
-Underfull \vbox (badness 1609) has occurred while \output is active []
+<images/inject_loss.png, id=187, 390.45876pt x 279.0425pt>
+File: images/inject_loss.png Graphic file (type png)
 
- [8]
+<use images/inject_loss.png>
+Package pdftex.def Info: images/inject_loss.png used on input line 748.
+(pdftex.def)             Requested size: 184.28857pt x 131.7035pt.
+
+<images/merge_concat_loss.png, id=188, 397.485pt x 279.0425pt>
+File: images/merge_concat_loss.png Graphic file (type png)
+
+<use images/merge_concat_loss.png>
+Package pdftex.def Info: images/merge_concat_loss.png used on input line 750.
+(pdftex.def)             Requested size: 184.28857pt x 129.37872pt.
+
+<images/merge_add_loss.png, id=189, 397.485pt x 279.0425pt>
+File: images/merge_add_loss.png Graphic file (type png)
+
+<use images/merge_add_loss.png>
+Package pdftex.def Info: images/merge_add_loss.png used on input line 752.
+(pdftex.def)             Requested size: 184.28857pt x 129.37872pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/model_compare.png, id=207, 1505.625pt x 903.375pt>
+File: images/model_compare.png Graphic file (type png)
+
+<use images/model_compare.png>
+Package pdftex.def Info: images/model_compare.png used on input line 799.
+(pdftex.def)             Requested size: 227.64894pt x 136.58937pt.
+
+<images/label_freq.png, id=208, 1505.625pt x 903.375pt>
+File: images/label_freq.png Graphic file (type png)
+
+<use images/label_freq.png>
+Package pdftex.def Info: images/label_freq.png used on input line 800.
+(pdftex.def)             Requested size: 227.64894pt x 136.58937pt.
+
+<images/label_scores6.png, id=209, 903.375pt x 1505.625pt>
+File: images/label_scores6.png Graphic file (type png)
+
+<use images/label_scores6.png>
+Package pdftex.def Info: images/label_scores6.png used on input line 802.
+(pdftex.def)             Requested size: 161.8885pt x 269.80615pt.
+
+<images/label_scores7.png, id=210, 903.375pt x 1505.625pt>
+File: images/label_scores7.png Graphic file (type png)
+
+<use images/label_scores7.png>
+Package pdftex.def Info: images/label_scores7.png used on input line 803.
+(pdftex.def)             Requested size: 161.8885pt x 269.80615pt.
+
+<images/label_scores8.png, id=211, 903.375pt x 1505.625pt>
+File: images/label_scores8.png Graphic file (type png)
+
+<use images/label_scores8.png>
+Package pdftex.def Info: images/label_scores8.png used on input line 804.
+(pdftex.def)             Requested size: 161.8885pt x 269.80615pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9 <./images/alpha_affect.png> <./images/inject_loss.png> <./images/merge_conca
+t_loss.png> <./images/merge_add_loss.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10 <./images/model_compare.png> <./images/label_freq.png> <./images/label_sco
+res6.png> <./images/label_scores7.png> <./images/label_scores8.png>]
+<images/c3.png, id=237, 602.25pt x 401.5pt>
+File: images/c3.png Graphic file (type png)
+ <use images/c3.png>
+Package pdftex.def Info: images/c3.png used on input line 830.
+(pdftex.def)             Requested size: 138.51457pt x 92.34305pt.
+
+<images/c2.png, id=238, 602.25pt x 377.41pt>
+File: images/c2.png Graphic file (type png)
+ <use images/c2.png>
+Package pdftex.def Info: images/c2.png used on input line 830.
+(pdftex.def)             Requested size: 138.51457pt x 86.80246pt.
+
+<images/c1.png, id=239, 602.25pt x 338.26375pt>
+File: images/c1.png Graphic file (type png)
+ <use images/c1.png>
+Package pdftex.def Info: images/c1.png used on input line 830.
+(pdftex.def)             Requested size: 138.51457pt x 77.79901pt.
+
+<images/c4.png, id=240, 602.25pt x 338.26375pt>
+File: images/c4.png Graphic file (type png)
+ <use images/c4.png>
+Package pdftex.def Info: images/c4.png used on input line 831.
+(pdftex.def)             Requested size: 138.51457pt x 77.79901pt.
+
+<images/c5.png, id=241, 602.25pt x 400.49625pt>
+File: images/c5.png Graphic file (type png)
+ <use images/c5.png>
+Package pdftex.def Info: images/c5.png used on input line 831.
+(pdftex.def)             Requested size: 138.51457pt x 92.1122pt.
+
+<images/c6.png, id=242, 602.25pt x 401.5pt>
+File: images/c6.png Graphic file (type png)
+ <use images/c6.png>
+Package pdftex.def Info: images/c6.png used on input line 831.
+(pdftex.def)             Requested size: 138.51457pt x 92.34305pt.
+
+<images/c7.png, id=243, 600.2425pt x 401.5pt>
+File: images/c7.png Graphic file (type png)
+ <use images/c7.png>
+Package pdftex.def Info: images/c7.png used on input line 832.
+(pdftex.def)             Requested size: 138.05287pt x 92.34305pt.
+
+<images/c8.png, id=244, 600.2425pt x 401.5pt>
+File: images/c8.png Graphic file (type png)
+ <use images/c8.png>
+Package pdftex.def Info: images/c8.png used on input line 832.
+(pdftex.def)             Requested size: 138.05287pt x 92.34305pt.
+
+<images/c9.png, id=245, 602.25pt x 401.5pt>
+File: images/c9.png Graphic file (type png)
+ <use images/c9.png>
+Package pdftex.def Info: images/c9.png used on input line 832.
+(pdftex.def)             Requested size: 138.51457pt x 92.34305pt.
+
+<images/first.png, id=248, 903.375pt x 903.375pt>
+File: images/first.png Graphic file (type png)
+ <use images/first.png>
+Package pdftex.def Info: images/first.png used on input line 852.
+(pdftex.def)             Requested size: 196.57523pt x 196.56519pt.
+
+<images/first_bigram.png, id=249, 903.375pt x 903.375pt>
+File: images/first_bigram.png Graphic file (type png)
+
+<use images/first_bigram.png>
+Package pdftex.def Info: images/first_bigram.png used on input line 861.
+(pdftex.def)             Requested size: 196.57523pt x 196.56519pt.
+
+<images/first_tri.png, id=250, 903.375pt x 903.375pt>
+File: images/first_tri.png Graphic file (type png)
+
+<use images/first_tri.png>
+Package pdftex.def Info: images/first_tri.png used on input line 867.
+(pdftex.def)             Requested size: 196.57523pt x 196.56519pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11 <./images/first.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12 <./images/c3.png (PNG copy)> <./images/c2.png (PNG copy)> <./images/c1.png
+ (PNG copy)> <./images/c4.png (PNG copy)> <./images/c5.png (PNG copy)> <./image
+s/c6.png (PNG copy)> <./images/c7.png (PNG copy)> <./images/c8.png (PNG copy)> 
+<./images/c9.png (PNG copy)> <./images/first_bigram.png> <./images/first_tri.pn
+g>]
+Underfull \hbox (badness 4341) in paragraph at lines 884--885
+[]\OT1/ptm/m/n/10 Hyperparameters as-so-ci-ated with the op-ti-miza-tion
+ []
+
+[13] (./main.bbl
 Overfull \hbox (42.57921pt too wide) in paragraph at lines 132--140
 \OT1/ptm/m/n/8 5021-[]distributed-[]representations-[]of-[]words-[]and-[]phrase
 s-[]and-[]their-[]compositionality .
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 147--151
+[]\OT1/ptm/m/n/8 C.-Y. Lin, ``Rouge: a pack-age for au-to-matic
+ []
+
+
+Underfull \hbox (badness 2894) in paragraph at lines 147--151
+\OT1/ptm/m/n/8 eval-u-a-tion of sum-maries,'' July 2004. [On-line].
+ []
+
+
+Underfull \hbox (badness 3168) in paragraph at lines 147--151
+\OT1/ptm/m/n/8 Avail-able: [][]$https : / / www . microsoft . com / en-[]us / r
+esearch / publication /
  []
 
 )
@@ -1332,30 +1540,32 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 681.
-[9
-
- <./images/alpha_affect.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 681.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 898.
+[14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 898.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 681.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 681.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 898.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 898.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8290AB029F9F7BD8126773BA5747069B;925.
+(rerunfilecheck)             Checksum: CC6A96DD3FE2CC7AC87E61553FF8D36B;1269.
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.28pt have occurred.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 681.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 898.
  ) 
 Here is how much of TeX's memory you used:
- 17008 strings out of 493089
- 293462 string characters out of 6134842
- 382881 words of memory out of 5000000
- 20204 multiletter control sequences out of 15000+600000
- 47586 words of font info for 103 fonts, out of 8000000 for 9000
+ 17256 strings out of 493089
+ 297209 string characters out of 6134842
+ 385945 words of memory out of 5000000
+ 20398 multiletter control sequences out of 15000+600000
+ 51893 words of font info for 117 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,11n,42p,10436b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,14n,42p,10436b,394s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1363,20 +1573,23 @@ live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texli
 ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
 /2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-
-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist
-/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/ti
-mes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on main.pdf (9 pages, 4058082 bytes).
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
+e1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/tim
+es/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (14 pages, 7133283 bytes).
 PDF statistics:
- 279 PDF objects out of 1000 (max. 8388607)
- 225 compressed objects within 3 object streams
- 62 named destinations out of 1000 (max. 500000)
- 168 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 403 PDF objects out of 1000 (max. 8388607)
+ 308 compressed objects within 4 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 316 words of extra memory for PDF output out of 10000 (max. 10000000)
 

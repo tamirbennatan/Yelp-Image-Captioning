@@ -11,4 +11,10 @@
 \BOOKMARK [2][-]{subsection.5.3}{Formatting Data for Training}{section.5}% 11
 \BOOKMARK [2][-]{subsection.5.4}{Model Architectures}{section.5}% 12
 \BOOKMARK [2][-]{subsection.5.5}{Inference as Beam Search}{section.5}% 13
-\BOOKMARK [1][-]{section*.9}{References}{}% 14
+\BOOKMARK [1][-]{section.6}{EXPERIMENTS}{}% 14
+\BOOKMARK [2][-]{subsection.6.1}{Training details}{section.6}% 15
+\BOOKMARK [1][-]{section.7}{Results}{}% 16
+\BOOKMARK [2][-]{subsection.7.1}{Quantitative Analysis}{section.7}% 17
+\BOOKMARK [2][-]{subsection.7.2}{Qualitative Analysis}{section.7}% 18
+\BOOKMARK [1][-]{section.8}{CONCLUSION}{}% 19
+\BOOKMARK [1][-]{section*.17}{References}{}% 20

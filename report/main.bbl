@@ -138,4 +138,22 @@ T.~Mikolov, I.~Sutskever, K.~Chen, G.~S. Corrado, and J.~Dean, ``Distributed
   \url{http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf}
 \BIBentrySTDinterwordspacing
 
+\bibitem{bleu}
+K.~Papineni, S.~Roukos, T.~Ward, and W.~jing Zhu, ``Bleu: a method for
+  automatic evaluation of machine translation,'' 2002, pp. 311--318.
+
+\bibitem{rouge}
+\BIBentryALTinterwordspacing
+C.-Y. Lin, ``Rouge: a package for automatic evaluation of summaries,'' July
+  2004. [Online]. Available:
+  \url{https://www.microsoft.com/en-us/research/publication/rouge-a-package-for-automatic-evaluation-of-summaries/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{cider}
+\BIBentryALTinterwordspacing
+R.~Vedantam, C.~L. Zitnick, and D.~Parikh, ``Cider: Consensus-based image
+  description evaluation,'' \emph{CoRR}, vol. abs/1411.5726, 2014. [Online].
+  Available: \url{http://arxiv.org/abs/1411.5726}
+\BIBentrySTDinterwordspacing
+
 \end{thebibliography}

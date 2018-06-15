@@ -34,7 +34,10 @@ Fixed variables:
 """
 
 PHOTO_MODEL = "models/photo_processor/model.h5"
+# inject model
 CAPTION_MODEL = "models/caption_generator/model_inject-date_5-16-15-45-ep030-loss5.009_lr-0.010000_patience-3.h5"
+# merge model
+# CAPTION_MODEL = "models/caption_generator/model_merge-date_5-18-14-40-ep016-loss4.704_lr-0.010000_patience-3.h5"
 TOKENIZER = "models/tokenizer/tokenizer.pkl"
 
 # define application.

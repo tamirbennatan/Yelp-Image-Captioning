@@ -1,0 +1,15 @@
+base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
+dplyr
+ggplot2
+tidytext
+jsonlite
+stringr
+grid
+tidyr
+bindrcpp

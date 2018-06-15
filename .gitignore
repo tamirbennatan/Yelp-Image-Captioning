@@ -7,6 +7,8 @@ data/*
 *.pyc
 server/imagecaption/*
 *latex/*
-*alpha.vs./*.jpg
+evaluation/*alpha.vs./*.jpg
+evaluation/examples/*.jpg
 evaluation/activation_viz/*
-
+evaluation/alpha6vs7/*
+evaluation/alpha7vs8/*
