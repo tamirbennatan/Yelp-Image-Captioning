@@ -37,8 +37,36 @@
 <!-- 'How does this work?' Modal content -->
 <div class="modal fade bd-description-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      WHEEEES
+    <div class="modal-content" style="padding:20px">
+        <p>
+            Here is a <i>very</i> brief summary of how this system works - if you're interested in the details, really do check out the <a href="{{ url_for('static', filename='main.pdf') }}" target="_blank">technical report </a> I wrote to document this work. 
+        </p>
+        <p>
+            Inspired by recent success in Neural Machine Translation, this model uses a variant of the <i>Encoder-Decoder</i> architecture. Images are <i>encoded</i> into fixed length vector representations. The model then feeds these representations to a Recurrent Neural Network (RNN), which is responsible for generating new captions - or <i>decoding</i> the image representations into captions. 
+        </p>
+        <p>
+            But how does one encode an image into a vector in a way that preserves the image's content? This system uses a form of transfer learning, where the activations of an intermediate layer of a pre-trained neural network are used as the encodings of an image. Every image is passed into the <a href="https://gist.github.com/ksimonyan/211839e770f7b538e2d8#file-readme-md" target="_blank"> VGG-16 network</a>  - which is assumed to effectively extract interesting features from diverse images - and the activations of third-to-last layer become the vector representation of each image. This technique allows me to tap into the power of very deep Convolutional Neural Networks, without having to train one myself. 
+        </p>
+        <figure>
+          <img src="{{ url_for('static', filename='images/cnn_features.png') }}" style="width:100%">
+          <figcaption style="font-size:10">Fig.1 - images are fed through the VGG-16 network, which is responsible for extracting interesting perceptual features. This network eventually flattens images into fixed-length vectors, which are treated as "encodings" of the images.</figcaption>
+        </figure>
+        <p>
+            These encodings are then fed into an RNN, which repeatedly predict words to add to the output caption. The RNN acts as a language model - it predicts the word which is likely come next in the caption, given the words it has already predicted, and the image encoding. 
+        </p>
+        <p>
+            If there's one figure that could summarize this system, it would be this:
+            <br>
+            <br>
+            <img src="{{ url_for('static', filename='images/encoder_decoder_cnn.png') }}" style="width:100%">
+              <figcaption style="font-size:10">Fig.2 - imagaes are <i>encoded</i> into vector representations by a CNN, and <i>decoded</i> into a caption by a RNN.</figcaption>
+            </figure>
+        </p>
+        <br>
+        <br>
+        <br>
+
+
     </div>
   </div>
 </div>

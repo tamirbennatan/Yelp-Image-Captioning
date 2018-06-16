@@ -10,12 +10,13 @@ import pickle
 import pdb
 import io
 import base64
+import gc
 
 import tensorflow as tf
 
-from keras.models import load_model
+from keras.models import load_model, Model
 from keras.preprocessing import image
-from keras.applications.vgg16 import preprocess_input
+from keras.applications.vgg16 import preprocess_input, VGG16
 from keras.preprocessing.image import load_img, img_to_array
 
 
@@ -49,7 +50,12 @@ This is done only once at the start-up of the server, as it is I/O expensive.
 """
 def load_image_processor():
     global image_processor
-    image_processor = load_model(PHOTO_MODEL)
+    tmp = VGG16()
+    tmp.layers.pop()
+    tmp.layers.pop()
+    image_processor = Model(inputs=tmp.inputs, outputs=tmp.layers[-1].output)
+    del tmp
+    gc.collect()
     global graph
     graph = tf.get_default_graph()
 def load_caption_model():
@@ -224,10 +230,15 @@ def sample_image():
 
 if __name__ == "__main__":
     # load all the models to memory
+    print("loading VGG16 (no file)")
     load_image_processor()
+    print("loading model")
     load_caption_model()
+    print("Loading tokenizer")
     load_tokenizer()
+    print("loading validation")
     load_validation()
+    print("Serving")
     http_server = WSGIServer(('', 5000), app)
     http_server.serve_forever()
 

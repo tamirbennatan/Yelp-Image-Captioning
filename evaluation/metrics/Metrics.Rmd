@@ -201,11 +201,11 @@ captions %>%
 cw = df_metrics %>%
       filter(str_detect(inject_6_pred,"chicken and waffles"))
 ```
-
+1
 
 ```{R}
-for(i in 1:20){
-   print(paste('im = Image.open("../data/yelp_photos/photos/', cw$photo_id[i],'.jpg")' , sep = ""))  
+for(i in 21:40){
+   print(paste("im = Image.open('../data/yelp_photos/photos/", cw$photo_id[i],".jpg')" , sep = ""))  
 }
 ```
 

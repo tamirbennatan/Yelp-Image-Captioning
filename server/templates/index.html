@@ -1,22 +1,36 @@
 {% extends "base.html" %} {% block content %}
 
-<h2>Image Classifier</h2>
+<h2><i>Everything Looks Like Chicken (and Waffles)</i></h2>
+<h3>A Neural Image Captioning System</h3><br/>
+    <div class = "row">
+        <p>
+         Neural Image Captioning (NIC) is the problem of training a single neural network that can identify describe the contents of an image in natural language.
+        </p>
+        <p>
+         In this project, I built a NIC that is designed to comment on pictures of food, trained on <a href="https://www.yelp.com/dataset" target="_blank">Yelp's public dataset.</a>
+        </p>
+        <p>
+            Try it out! Upload your own pictures of your favorite food, or select one of the sample images below. If you're curious to see how this system works, check out <a href="{{ url_for('static', filename='main.pdf') }}" target="_blank">the technical report I wrote</a> which goes into the details of what's going on behind the scenes.
+        </p>
+    </div>
 
-<div>
     <div class="row">
         <form id="upload-file" method="post" enctype="multipart/form-data">
-            <label for="imageUpload" class="btn btn-primary" style="height:40px">
+            <label for="imageUpload" class="btn btn-primary" style="height:40px;margin:5px">
                 Upload image...
             </label>
             <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
         </form>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-image-modal-lg" style="height:40px">Sample Images</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-image-modal-lg" style="height:40px;margin:5px">Sample Images</button>
     </div>
     <!-- Modal content for sample images -->
     <div class="modal fade bd-image-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
+            <div class="row" style="padding:20px">
+            <h5>Below are a set of sample images the model has never seen before, and the corresponding caption uploaded to Yelp by real users. To get a new sample of images, refresh the page.</h5>
+            </div>
             <div class="row">
             {% for eachpic in photo_captions.first %}
                 <div class="col-md-4">
