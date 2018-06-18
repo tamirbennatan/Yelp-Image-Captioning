@@ -20,13 +20,13 @@ virtualenv your-env
 source your-env/bin/activate
 ```
 
--Install the required packages (python3)
+- Install the required packages (python3)
 
 ```
 python3 -m pip install -r requirements.txt
 ```
 
--Then, run the application
+- Then, run the application
 ```bash
 python3 app.py
 ```
