@@ -1,7 +1,7 @@
 ## _Everything Looks Like Chicken (and Waffles)_
 ### A Neural Image Captioning System
 
-** UPDATE ** - The application demo is no longer live. See the instructions below on how to download it locally. You may also contact me, and I can quickly get the demo up and running again on a public server. 
+**UPDATE** - The application demo is no longer live. See the instructions below on how to download it locally. You may also contact me, and I can quickly get the demo up and running again on a public server. 
 
 ---
 
